@@ -1,0 +1,289 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="https://thymleaf.org">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/colors/blue.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+</head>
+<body onload="GenerateCaptcha();">
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header Container
+================================================== -->
+		<header id="header-container"
+			class="fullwidth dashboard-header not-sticky">
+
+			<!-- Header -->
+			<div id="header">
+				<div class="container">
+
+					<!-- Left Side Content -->
+					<div class="left-side">
+
+						<!-- Logo -->
+						<div id="logo">
+							<a href="#"><img src="../../../images/360Logo.jpg" alt=""></a>
+						</div>
+
+						<div class="clearfix"></div>
+						<!-- Main Navigation / End -->
+
+					</div>
+					<!-- Left Side Content / End -->
+
+
+					<!-- Right Side Content / End -->
+					<div class="right-side">
+
+						<div class="header-widget">
+							<!-- 					<a href="#sign-in-dialog" class="popup-with-zoom-anim log-in-button"><i class="icon-feather-log-in"></i> <span>Log In / Register</span></a>
+ -->
+
+							<nav id="navigation">
+								<ul id="responsive">
+									<li><a href="#"><i class="icon-feather-log-in"></i> <span>Log
+												In / Register</span></a>
+										<ul class="dropdown-nav">
+											<li><a th:href="@{/admin/login}">Admin Login</a></li>
+											<li><a th:href="@{/user/login}">User Login</a></li>
+
+											<li><a th:href="@{/emp/login}">Employee Login</a></li>
+											<li><a th:href="@{/login}">Interviewer Login</a></li>
+											<li><a th:href="@{/client/login}">Client Login</a></li>
+											<li><a th:href="@{/candidate/login}">Candidate Login</a></li>
+
+
+										</ul></li>
+
+								</ul>
+
+							</nav>
+
+						</div>
+
+						<!-- Mobile Navigation Button -->
+						<span class="mmenu-trigger">
+							<button class="hamburger hamburger--collapse" type="button">
+								<span class="hamburger-box"> <span
+									class="hamburger-inner"></span>
+								</span>
+							</button>
+						</span>
+
+					</div>
+					<!-- Right Side Content / End -->
+
+				</div>
+			</div>
+			<!-- Header / End -->
+
+		</header>
+		<div class="clearfix"></div>
+		<!-- Header Container / End -->
+
+
+
+		<!-- Intro Banner
+================================================== -->
+		<!-- add class "disable-gradient" to enable consistent background overlay -->
+		<div class="intro-banner"
+			data-background-image="images/home-background.jpg">
+			<div class="container">
+
+				<!-- Intro Headline -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="banner-headline">
+							<h3>
+								<strong>Hire experts or be hired for any job, any time.</strong>
+								<br> <span>Thousands of small businesses use <strong
+									class="color">360Resourcing</strong> to turn their ideas into
+									reality.
+								</span>
+							</h3>
+						</div>
+					</div>
+				</div>
+
+				<!-- Search Bar -->
+				<div class="row">
+					<div class="col-md-12">
+						<div>
+							<h3>
+								<b><span style="color: red" th:text="${message}"></span></b>
+							</h3>
+						</div>
+						<form method="post" id="search-form"
+							th:action="@{/job/jdListForUnknown}" th:object="${objJd}">
+							<div class="intro-banner-search-form margin-top-95">
+
+								<!-- Search Field of skills -->
+								<div class="intro-search-field">
+									<label for="intro-keywords" class="field-title ripple-effect">Skills</label>
+									 <input id="intro-keywords" type="text"
+										name="skills" th:field="*{skills}"
+										placeholder="eg. Java, Spring Boot, Python etc" required="required">
+								</div>
+
+								<!-- Search Field of Experiemce in yrs-->
+								<div class="intro-search-field">
+									<label for="intro-keywords" class="field-title ripple-effect">Experience in yrs</label>
+									 <input id="intro-keywords" type="text"
+										name="exp" th:field="*{exp}"
+										placeholder="eg. 1, 2.5, 3 etc" required="required">
+								</div>
+
+								<!-- Button -->
+								<div class="intro-search-button">
+									<!--										<a th:object="${jdList}" th:href="@{../../client/jdList}">Job List</a><br>
+		th:onclick="'window.location.href = \'' + @{/deviceevent/list/{id}(id=${deviceEvent.id})} + '\''"
+		
+		-->
+									<button class="button ripple-effect" type="submit">Search</button>
+
+									<!-- 													<a th:href="@{/resourcing}" class="apply-now-button popup-with-zoom-anim">Apply Now <i class="icon-material-outline-arrow-right-alt"></i></a> -->
+
+									<!-- th:onclick="'window.location.href= \'' +@{../../job/jdListForUnknown} + '\''">Search</button> -->
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<!-- Stats -->
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="intro-stats margin-top-45 hide-under-992px">
+							<li>
+								<h4 th:text="${jdList}"></h4> <span>Jobs Posted</span>
+							</li>
+							<li>
+
+								<h4 th:text="${candidateList}"></h4> <span>Candidates
+									Registered</span>
+							</li>
+							<li>
+								<h4 th:text="${clientList}"></h4> <span>Clients
+									Registered</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div id="footer">
+
+
+
+
+			<!-- Footer Copyrights -->
+			<div class="footer-bottom-section">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12">
+							© 2022 <strong>360Resourcing</strong>. All Rights Reserved.
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Footer Copyrights / End -->
+
+		</div>
+		<!-- Footer / End -->
+
+	</div>
+	<!-- Wrapper / End -->
+
+
+	<!-- Sign In Popup
+================================================== -->
+
+	<!-- Sign In Popup / End -->
+
+
+	<!-- Scripts
+================================================== -->
+	<script src="../../js/jquery-3.6.0.min.js"></script>
+	<script src="../../js/jquery-migrate-3.3.2.min.js"></script>
+	<script src="../../js/mmenu.min.js"></script>
+	<script src="../../js/tippy.all.min.js"></script>
+	<script src="../../js/simplebar.min.js"></script>
+	<script src="../../js/bootstrap-slider.min.js"></script>
+	<script src="../../js/bootstrap-select.min.js"></script>
+	<script src="../../js/snackbar.js"></script>
+	<script src="../../js/clipboard.min.js"></script>
+	<script src="../../js/counterup.min.js"></script>
+	<script src="../../js/magnific-popup.min.js"></script>
+	<script src="../../js/slick.min.js"></script>
+	<script src="../../js/custom.js"></script>
+	<script src="../../js/strongPassword.js"></script>
+
+	<script src="js/captcha.js"></script>
+	<script src="js/show_password.js"></script>
+
+	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+	<script>
+		// Snackbar for user status switcher
+		$('#snackbar-user-status label').click(function() {
+			Snackbar.show({
+				text : 'Your status has been changed!',
+				pos : 'bottom-center',
+				showAction : false,
+				actionText : "Dismiss",
+				duration : 3000,
+				textColor : '#fff',
+				backgroundColor : '#383838'
+			});
+		});
+		x
+	</script>
+
+
+	<!-- Google Autocomplete -->
+	<script>
+		function initAutocomplete() {
+			var options = {
+				types : [ '(cities)' ],
+			// componentRestrictions: {country: "us"}
+			};
+
+			var input = document.getElementById('autocomplete-input');
+			var autocomplete = new google.maps.places.Autocomplete(input,
+					options);
+		}
+
+		// Autocomplete adjustment for homepage
+		if ($('.intro-banner-search-form')[0]) {
+			setTimeout(function() {
+				$(".pac-container").prependTo(
+						".intro-search-field.with-autocomplete");
+			}, 300);
+		}
+	</script>
+
+	<!-- Google API & Maps -->
+	<!-- Geting an API Key: https://developers.google.com/maps/documentation/javascript/get-api-key -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
+
+</body>
+</html>

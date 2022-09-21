@@ -1,0 +1,91 @@
+.pm, .cm {
+	list-style: none;
+}
+
+.pm {
+	position: relative;
+	margin: 0px;
+	padding: 0px;
+}
+
+.cm {
+	position: absolute;
+	visibility: hidden;
+	background-color: rgb(236, 236, 236);
+	z-index: 1;
+}
+
+.pm>li {
+	display: inline-block;
+}
+
+.pm>li>a {
+	display: inline-block;
+	padding: 4px;
+	text-decoration: none;
+}
+
+.cm a {
+	display: block;
+	padding: 4px;
+	text-decoration: none;
+}
+
+.pm>li>a:hover+.cm, .cm:hover {
+	visibility: visible;
+}
+
+.pm a {
+	color: black;
+	text-decoration: none;
+}
+
+.pm a:hover {
+	color: #01c5a2;
+	text-decoration: none;
+}
+
+/*TEMPLATE
+.mm,
+.sm {
+  list-style: none;
+}
+.mm {
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  background-color: #000;
+  border-bottom: 4px solid red;
+}
+.sm {
+  position: absolute;
+  z-index: 1;
+  visibility: hidden;
+  background-color: #000;
+  border-width: 0px 4px 4px 4px;
+  border-style: solid;
+  border-color: red;
+}
+.mm > li {
+  display: inline-block;
+}
+.mm > li > a {
+  display: inline-block;
+  padding: 8px;
+}
+.sm a {
+  display: block;
+  padding: 8px;
+}
+.mm > li > a:hover + .sm,
+.sm:hover {
+  visibility: visible;
+}
+.mm a {
+  text-decoration: none;
+  color: #FFF;
+}
+.mm a:hover {
+  text-decoration: underline;
+  color: yellow;
+}*/

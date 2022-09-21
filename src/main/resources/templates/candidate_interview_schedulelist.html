@@ -1,0 +1,497 @@
+
+<!-- ============================= -->
+
+<!-- 	@author: Praveen Gudimalla -->
+
+<!--  ==============================-->
+
+<!doctype html>
+<html lang="en" xmlns:th="https://thymleaf.org">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360 Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/colors/blue.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body class="gray">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header Container
+================================================== -->
+		<header id="header-container"
+			class="fullwidth dashboard-header not-sticky">
+
+			<!-- Header -->
+			<div id="header">
+				<div class="container">
+
+					<!-- Left Side Content -->
+					<div class="left-side">
+
+						<!-- Logo -->
+						<div id="logo">
+							<a href="#"><img src="../../images/360Logo.jpg" alt=""></a>
+						</div>
+
+						<!-- Main Navigation -->
+						<nav id="navigation">
+							<ul id="responsive">
+
+								<li><a href="#">Find Work</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/resourcing}">Browse Jobs</a></li>
+									</ul></li>
+
+								<li><a href="#">Education</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/education/educationList/{candidateId}(candidateId=${session.candidateObj.candidateId})}">Education
+												List</a></li>
+									</ul></li>
+
+								<li><a href="#">Employment</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/employment/employmentList/{candidateId}(candidateId=${session.candidateObj.candidateId})}">Employment
+												List</a></li>
+									</ul></li>
+
+								<li><a href="#">Skills</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/csa/skillList/{candidateId}(candidateId=${session.candidateObj.candidateId})}">Skills
+												List</a></li>
+										<li><a
+											th:href="@{/csa/addSkills/{id}(id=${session.candidateObj.candidateId})}">add
+												Skills</a></li>
+									</ul></li>
+
+
+								<li><a href="#">Pages</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/education/educationList/{candidateId}(candidateId=${session.candidateObj.candidateId})}">Education
+												List</a></li>
+										<li><a
+											th:href="@{/employment/employmentList/{candidateId}(candidateId=${session.candidateObj.candidateId})}">Employment
+												List</a></li>
+										<li><a
+											th:href="@{/csa/skillList/{candidateId}(candidateId=${session.candidateObj.candidateId})}">Skills
+												List</a></li>
+										<li><a
+											th:href="@{/csa/addSkills/{id}(id=${session.candidateObj.candidateId})}">add
+												Skills</a></li>
+
+									</ul></li>
+
+								<li><a href="#">Next</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/candidate/dashboardSettings/{id}(id=${session.candidateObj.candidateId})}">DashboardSettings</a>
+										</li>
+									</ul></li>
+
+								<li><a href="#">Back</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/candidate/logout}">Logout</a></li>
+									</ul></li>
+
+								<li><a href="#">Documents</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/candidate/doc/{id}(id=${session.candidateObj.candidateId})}">Doc</a></li>
+									</ul></li>
+
+								<li><a href="#">InterviewFeedback</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/candidate/feedbackOfInterview}">FeedbackList</a></li>
+									</ul></li>
+
+							</ul>
+						</nav>
+						<div class="clearfix"></div>
+						<!-- Main Navigation / End -->
+
+					</div>
+					<!-- Left Side Content / End -->
+
+
+					<!-- Right Side Content / End -->
+					<div class="right-side">
+
+						<!--  User Notifications -->
+
+						<!--  User Notifications / End -->
+
+						<!-- User Menu -->
+						<div class="header-widget">
+
+							<!-- Messages -->
+							<div class="header-notifications user-menu">
+								<div class="header-notifications-trigger">
+									<a href="#"><div class="user-avatar status-online">
+											<img src="../../images/user-avatar-small-01.jpg" alt="">
+										</div></a>
+								</div>
+
+								<!-- Dropdown -->
+								<div class="header-notifications-dropdown">
+
+									<!-- User Status -->
+									<div class="user-status">
+
+										<!-- User Name / Avatar -->
+										<div class="user-details">
+											<div class="user-avatar status-online">
+												<img src="../../images/user-avatar-small-01.jpg" alt="">
+											</div>
+											<div class="user-name">
+												<h3 style="color: maroon" th:text="${session.candidateObj.firstName}"></h3>
+												<span>Candidate</span>
+											</div>
+										</div>
+
+										
+									</div>
+
+									<ul class="user-menu-small-nav">
+
+										<li><a
+											th:href="@{/candidate/dashboardSettings/{id}(id=${session.candidateObj.candidateId})}"><i
+												class="icon-material-outline-settings"></i> Settings</a></li>
+
+										<li><a th:href="@{/candidate/logout}"><i
+												class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+						<!-- User Menu / End -->
+
+						<!-- Mobile Navigation Button -->
+						<span class="mmenu-trigger">
+							<button class="hamburger hamburger--collapse" type="button">
+								<span class="hamburger-box"> <span
+									class="hamburger-inner"></span>
+								</span>
+							</button>
+						</span>
+
+					</div>
+					<!-- Right Side Content / End -->
+
+				</div>
+			</div>
+			<!-- Header / End -->
+
+		</header>
+		<div class="clearfix"></div>
+		<!-- Header Container / End -->
+
+
+		<!-- Dashboard Container -->
+		<div class="dashboard-container">
+
+			<!-- Dashboard Sidebar
+	================================================== -->
+			<div class="dashboard-sidebar">
+				<div class="dashboard-sidebar-inner" data-simplebar>
+					<div class="dashboard-nav-container">
+
+						<!-- Responsive Navigation Trigger -->
+						<a href="#" class="dashboard-responsive-nav-trigger"> <span
+							class="hamburger hamburger--collapse"> <span
+								class="hamburger-box"> <span class="hamburger-inner"></span>
+							</span>
+						</span> <span class="trigger-title">Dashboard Navigation</span>
+						</a>
+
+						<!-- Navigation -->
+						<div class="dashboard-nav">
+							<div class="dashboard-nav-inner">
+
+
+
+
+								<ul data-submenu-title="Account">
+									<li><a
+										th:href="@{/candidate/dashboardSettings/{id}(id=${session.candidateObj.candidateId})}"><i
+											class="icon-material-outline-settings"></i> Settings</a></li>
+									<li><a th:href="@{/candidate/logout}"><i
+											class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+									<li><a
+										th:href="@{/candidate/deleteCandidate/{id}(id=${session.candidateObj.candidateId})}"><i
+											style="color: red" class="icon-material-outline-delete"></i>Remove
+											Account</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- Navigation / End -->
+
+					</div>
+				</div>
+			</div>
+			<!-- Dashboard Sidebar / End -->
+
+
+			<!-- Dashboard Content
+	================================================== -->
+			<div class="dashboard-content-container" data-simplebar>
+				<div class="dashboard-content-inner">
+
+					<!-- Dashboard Headline -->
+					<div class="dashboard-headline">
+						<h3 style="color: green" th:text="${session.candidateObj.firstName}"></h3>
+						<h3 style="color: red;" th:text="${message}"></h3>
+
+
+						<!-- Breadcrumbs -->
+					</div>
+
+					<div style='color: navy;'>
+
+<span th:if="${recuiter}!=null">
+						<h3>Contact Recruiter:</h3>
+						<h3 th:text="${recruiter.employeeName}"></h3>
+						<h3 th:text="${recruiter.employeeRole}"></h3>
+						<h3 th:text="${recruiter.emailId}"></h3>
+						<h3 th:text="${recruiter.mobileNo}"></h3>
+						
+						</span>
+
+						<div class="dashboard-box margin-top-0" style="width: 110%">
+
+						<!-- Fun Facts Container -->
+						<span th:if="${scheduleList}!=null" >
+
+						<!-- Headline -->
+						<div class="headline">
+							<h3>
+								<i class="icon-material-outline-business-center"></i> <span
+									style="color: blue; display: inline;" th:text="${TableName}"></span>
+							</h3>
+						</div>
+						<div align="center">
+						<div align="center" style="width: 100%">
+
+							<link rel="stylesheet"
+								href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+								integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+								crossorigin="anonymous">
+
+
+							<table class="basic-table" id="candidateTable"
+								style="width: 100%">
+							<thead>
+								<tr>
+									<th>Candidate Name</th>
+									<th>Interviewer Name</th>
+									<th>Position</th>
+									<th>Schedule Date</th>
+									<th>Time</th>
+									<th>Employee Name</th>
+									<th>Feedback</th>
+									<th>Contact Recruiter</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="schedule : ${scheduleList}">
+									<td th:text="${schedule.candidate.firstName}"></td>
+									<td th:text="${schedule.interviewPanel.interviewerName}"></td>
+									<td th:text="${schedule.jobDescription.position}"></td>
+									<td th:text="${schedule.date}"></td>
+									<td th:text="${schedule.time}"></td>
+									<td th:text="${schedule.employee.employeeName}"></td>
+									<td><span th:if="${schedule.feedback==null}"
+										th:text="pending"></span> <span
+										th:if="${schedule.feedback!=null}"
+										th:text="${schedule.feedback}"></span></td>
+										<td th:text="${schedule.employee.emailId}"></td>
+								</tr>
+							</tbody>
+						</table></span>
+
+						<!-- Row -->
+
+						<!-- Row -->
+						<div class="row">
+
+							<!-- Dashboard Box -->
+
+
+							<!-- Dashboard Box -->
+
+						</div>
+						<!-- Row / End -->
+
+						<!-- Footer -->
+
+						<!-- Footer / End -->
+
+					</div>
+				</div>
+				<!-- Dashboard Content / End -->
+
+			</div>
+			<!-- Dashboard Container / End -->
+
+		</div>
+		<!-- Wrapper / End -->
+
+
+		<!-- Apply for a job popup
+================================================== -->
+
+		<!-- Apply for a job popup / End -->
+
+
+		<!-- Scripts
+================================================== -->
+		<script src="../../js/jquery-3.6.0.min.js"></script>
+		<script src="../../js/jquery-migrate-3.3.2.min.js"></script>
+		<script src="../../js/mmenu.min.js"></script>
+		<script src="../../js/tippy.all.min.js"></script>
+		<script src="../../js/simplebar.min.js"></script>
+		<script src="../../js/bootstrap-slider.min.js"></script>
+		<script src="../../js/bootstrap-select.min.js"></script>
+		<script src="../../js/snackbar.js"></script>
+		<script src="../../js/clipboard.min.js"></script>
+		<script src="../../js/counterup.min.js"></script>
+		<script src="../../js/magnific-popup.min.js"></script>
+		<script src="../../js/slick.min.js"></script>
+		<script src="../../js/custom.js"></script>
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+		<script>
+			$(document).ready(function() {
+				var table = $('#candidateTable').DataTable({
+					"sAjaxDataProp" : ""
+				})
+			});
+		</script>
+
+		<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+		<script>
+			// Snackbar for user status switcher
+			$('#snackbar-user-status label').click(function() {
+				Snackbar.show({
+					text : 'Your status has been changed!',
+					pos : 'bottom-center',
+					showAction : false,
+					actionText : "Dismiss",
+					duration : 3000,
+					textColor : '#fff',
+					backgroundColor : '#383838'
+				});
+			});
+		</script>
+
+		<!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
+		<script src="../../js/chart.min.js"></script>
+		<script>
+			Chart.defaults.global.defaultFontFamily = "Nunito";
+			Chart.defaults.global.defaultFontColor = '#888';
+			Chart.defaults.global.defaultFontSize = '14';
+
+			var ctx = document.getElementById('chart').getContext('2d');
+
+			var chart = new Chart(ctx, {
+				type : 'line',
+
+				// The data for our dataset
+				data : {
+					labels : [ "January", "February", "March", "April", "May",
+							"June" ],
+					// Information about the dataset
+					datasets : [ {
+						label : "Views",
+						backgroundColor : 'rgba(42,65,232,0.08)',
+						borderColor : '#2a41e8',
+						borderWidth : "3",
+						data : [ 196, 132, 215, 362, 210, 252 ],
+						pointRadius : 5,
+						pointHoverRadius : 5,
+						pointHitRadius : 10,
+						pointBackgroundColor : "#fff",
+						pointHoverBackgroundColor : "#fff",
+						pointBorderWidth : "2",
+					} ]
+				},
+
+				// Configuration options
+				options : {
+
+					layout : {
+						padding : 10,
+					},
+
+					legend : {
+						display : false
+					},
+					title : {
+						display : false
+					},
+
+					scales : {
+						yAxes : [ {
+							scaleLabel : {
+								display : false
+							},
+							gridLines : {
+								borderDash : [ 6, 10 ],
+								color : "#d8d8d8",
+								lineWidth : 1,
+							},
+						} ],
+						xAxes : [ {
+							scaleLabel : {
+								display : false
+							},
+							gridLines : {
+								display : false
+							},
+						} ],
+					},
+
+					tooltips : {
+						backgroundColor : '#333',
+						titleFontSize : 13,
+						titleFontColor : '#fff',
+						bodyFontColor : '#fff',
+						bodyFontSize : 13,
+						displayColors : false,
+						xPadding : 10,
+						yPadding : 10,
+						intersect : false
+					}
+				},
+
+			});
+		</script>
+</body>
+</html>

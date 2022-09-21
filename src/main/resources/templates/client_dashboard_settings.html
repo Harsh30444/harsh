@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/colors/blue.css">
+
+</head>
+<body class="gray">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header Container
+================================================== -->
+		<header id="header-container"
+			class="fullwidth dashboard-header not-sticky">
+
+			<!-- Header -->
+			<div id="header">
+				<div class="container">
+
+					<!-- Left Side Content -->
+					<div class="left-side">
+
+						<!-- Logo -->
+						<div id="logo">
+							<a href="#"><img src="../../images/360Logo.jpg" alt=""></a>
+						</div>
+
+						<!-- Main Navigation -->
+						<nav id="navigation">
+							<ul id="responsive">
+
+								<li><a href="#" class="current">Dashboard</a>
+									<ul class="dropdown-nav">
+										<li><a th:object=${editClientDetails}
+											th:href="@{/client/GoToDashboard/{id}(id=${session.clientObj.clientId})}"><i
+												class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+									</ul></li>
+
+								<li><a href="#" class="current">Job Description</a>
+									<ul class="dropdown-nav">
+										<li><a 
+											th:href="@{/client/dashboard-post-a-job/{id}(id=${session.clientObj.clientId})}">Post
+												A Job</a></li>
+										<li><a th:object="${jdList}"
+											th:href="@{/client/jdList/{id}(id=${session.clientObj.clientId})}">Job
+												List</a></li>
+									</ul></li>
+
+								<li><a href="#" class="current">Settings</a>
+									<ul class="dropdown-nav">
+										<li><a th:object=${editClientDetails}
+											th:href="@{/client/updateClientDetails/{id}(id=${session.clientObj.clientId})}"><i
+												class="icon-material-outline-settings"></i> Settings</a></li>
+									</ul></li>
+
+								<li><a href="#" class="current">My Employees</a>
+									<ul class="dropdown-nav">
+										<li><a th:object="${editClientDetails}"
+											th:href="@{/eca/ecaListForSingleClient/{id}(id=${session.clientObj.clientId})}">My
+												Employees</a></li>
+									</ul></li>
+
+								<li><a href="#" class="current">Department</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/dept/addDept}">AddDepartment</a></li>
+										<li><a th:href="@{/dept/deptList}">Department List</a></li>
+									</ul></li>
+
+							</ul>
+						</nav>
+						<div class="clearfix"></div>
+
+
+						<!-- User Profile /End -->
+					</div>
+					<!-- Left Side Content / End -->
+
+
+
+
+					<!-- Right Side Content / End -->
+					<div class="right-side">
+
+
+
+						<!-- User Menu -->
+						<div class="header-widget">
+
+							<!-- Messages -->
+							<div class="header-notifications user-menu">
+								<div class="header-notifications-trigger">
+									<a href="#"><div class="user-avatar status-online">
+											<img src="../../images/user-avatar-small-01.jpg" alt="">
+										</div></a>
+								</div>
+
+								<!-- Dropdown -->
+								<div class="header-notifications-dropdown">
+
+									<!-- User Status -->
+									<div class="user-status">
+
+										<!-- User Name / Avatar -->
+										<div class="user-details">
+											<div class="user-avatar status-online">
+												<img src="../../images/user-avatar-small-01.jpg" alt="">
+											</div>
+											<div class="user-name">
+												<h3 style="color: green"
+													th:text="${session.clientObj.clientName}"></h3>
+												<span>Client</span>
+											</div>
+										</div>
+
+										
+										 
+											
+									</div>
+
+									<ul class="user-menu-small-nav">
+										<li><a th:object=${editClientDetails}
+											th:href="@{../../client/GoToDashboard/{id}(id=${session.clientObj.clientId})}"></i>
+												Dashboard</a></li>
+										<li><a th:object=${editClientDetails}
+											th:href="@{../../client/updateClientDetails/{id}(id=${session.clientObj.clientId})}"></i>
+												Settings</a></li>
+										<li><a th:href="@{/resourcing}"><i
+												class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+						<!-- User Menu / End -->
+
+						<!-- Mobile Navigation Button -->
+						<span class="mmenu-trigger">
+							<button class="hamburger hamburger--collapse" type="button">
+								<span class="hamburger-box"> <span
+									class="hamburger-inner"></span>
+								</span>
+							</button>
+						</span>
+
+					</div>
+					<!-- Right Side Content / End -->
+
+				</div>
+			</div>
+			<!-- Header / End -->
+
+		</header>
+		<div class="clearfix"></div>
+		<!-- Header Container / End -->
+
+
+		<!-- Dashboard Container -->
+		<div class="dashboard-container">
+
+			<!-- Dashboard Sidebar
+	================================================== -->
+			<div class="dashboard-sidebar">
+				<div class="dashboard-sidebar-inner" data-simplebar>
+					<div class="dashboard-nav-container">
+
+						<!-- Responsive Navigation Trigger -->
+						<a href="#" class="dashboard-responsive-nav-trigger"> <span
+							class="hamburger hamburger--collapse"> <span
+								class="hamburger-box"> <span class="hamburger-inner"></span>
+							</span>
+						</span> <span class="trigger-title">Dashboard Navigation</span>
+						</a>
+
+						<!-- Navigation -->
+						<div class="dashboard-nav">
+							<div class="dashboard-nav-inner">
+
+
+								<ul data-submenu-title="Organize and Manage">
+									<li><a href="#"><i
+											class="icon-material-outline-business-center"></i> Jobs</a>
+										<ul>
+											<li><a th:object="${jdList}"
+												th:href="@{../../client/jdList/{id}(id=${session.clientObj.clientId})}">Manage
+													Jobs <span class="nav-tag">3</span>
+											</a></li>
+											<li><a th:object="${editClientDetails}"
+												th:href="@{../../client/dashboard-post-a-job/{id}(id=${session.clientObj.clientId})}">Post
+													a Job</a></li>
+										</ul></li>
+
+								</ul>
+
+								<ul data-submenu-title="Account">
+									<li><a th:object=${editClientDetails}
+										th:href="@{/client/updateClientDetails/{id}(id=${session.clientObj.clientId})}"><i
+											class="icon-material-outline-settings"></i> Settings</a></li>
+									<li><a th:href="@{/resourcing}"><i
+											class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+								</ul>
+
+							</div>
+						</div>
+						<!-- Navigation / End -->
+
+					</div>
+				</div>
+			</div>
+			<!-- Dashboard Sidebar / End -->
+
+
+	<!-- Dashboard Content
+	================================================== -->
+	<div class="dashboard-content-container" data-simplebar>
+		<div class="dashboard-content-inner" >
+			
+			<!-- Dashboard Headline -->
+			<div class="dashboard-headline">
+				
+
+				
+			</div>
+			<form class="dashboard-content-container" data-simplebar
+				th:each="client:${editClientDetails}" enctype="multipart/form-data"
+				th:action="@{/client/saveUpdatedGoToDashboard/{id}(id=${session.clientObj.clientId})}"
+				method="post">
+				<div>
+					<div class="dashboard-content-inner">
+						<!-- Dashboard Headline -->
+						<div class="dashboard-headline">
+							<h3>Settings</h3>
+						</div>
+
+						<!-- Row -->
+						<div class="row">
+
+							<!-- Dashboard Box -->
+							<div class="col-xl-12">
+								<div class="dashboard-box margin-top-0">
+
+									<!-- Headline -->
+									<div class="headline">
+										<h3>
+											<i class="icon-material-outline-account-circle"></i> My
+											Account
+										</h3>
+									</div>
+
+									<div class="content with-padding padding-bottom-0">
+									<div class="row">
+
+											<div class="col-auto">
+											Profile Picture
+												<div class="avatar-wrapper" data-tippy-placement="bottom">
+													<div>
+														<th scope="row"><img alt=" "
+															th:src="*{'data:image/jpeg;base64,'+{client.image}}"
+															style="width: 150px; height: 150px;"></th>
+													</div>
+													<span th:if="${client.image==null}"><img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" /></span>
+													<div class="upload-button"></div>
+													<input class="file-upload" type="file"
+														accept="image/png,image/jpg,image/jpeg" id="image"
+														name="file" />
+												</div>
+											</div>
+
+
+
+										<div class="col">
+											<div class="row">
+
+												
+												<input type="hidden" class="with-border"
+													placeholder="clientId" id="clientId" name="clientId"
+													th:value="${client.clientId}">
+											
+
+
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>Client Name</h5>
+									
+														<input type="text" class="with-border"
+															pattern="[A-Za-z\s]{1,20}"
+																title="it should be in A-Za-z format"
+															placeholder="Client Name" id="clientName"
+															name="clientName" th:value="${client.clientName}">
+													</div>
+												</div>
+
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>Email</h5>
+														<input type="text" class="input-text with-border"
+															name="email" th:value="${client.email}"
+															id="emailaddress-register" placeholder="Email Address"
+															pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+															title="form with an email field that that must be in the following order:
+						    									characters@characters.domain (characters followed by an @ sign, followed by more characters,
+																and then (dot) like . After the (dot) like. sign, add at least 2 letters from a to z:"
+															required readonly="readonly"/>
+
+
+													</div>
+												</div>
+
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>Mobile</h5>
+														<input type="tel" class="with-border" placeholder="mobile"
+															pattern="[6|7|8|9]{1}\d{9}"
+															title="mobile number should have 10 digits and starts with 9/8/7/6 only"
+															id="mobile" name="mobile" th:value="${client.mobile}"
+															required minlength="10" maxlength="10" />
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							</div>
+							<!-- Dashboard Box -->
+
+
+							<!-- Dashboard Box -->
+							<div class="col-xl-12">
+								<div id="test1" class="dashboard-box">
+
+									<!-- Headline -->
+									<div class="headline">
+										<h3>
+											<i class="icon-material-outline-lock"></i> Password &Security
+										</h3>
+									</div>
+
+									<div class="content with-padding">
+										<div class="row">
+											<div class="col-xl-4">
+														<div class="input-with-icon-left">
+															<i class="bi bi-eye-slash" id="togglePassword"></i> <input
+																class="bi bi-eye-slash" id="password" type="password"
+																name="password" th:value=${client.password} required readonly="readonly"/>
+														</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Button -->
+							<div class="col-xl-12">
+								<button type="submit"
+									class="button ripple-effect big margin-top-30" th:text="save">save</button>
+							</div>
+
+						</div>
+			</form>
+			
+	
+	
+
+			<!-- Footer -->
+			<div class="dashboard-footer-spacer"></div>
+			<div class="small-footer margin-top-15">
+				<div class="small-footer-copyrights">
+					© 2022 <strong>360Resourcing</strong>. All Rights Reserved.
+				</div>
+
+				<div class="clearfix"></div>
+			</div>
+			<!-- Footer / End -->
+
+		</div>
+	</div>
+	<!-- Dashboard Content / End -->
+
+</div>
+<!-- Dashboard Container / End -->
+
+</div>
+<!-- Wrapper / End -->
+
+
+
+
+
+<!-- Scripts
+================================================== -->
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script src="../../js/jquery-migrate-3.3.2.min.js"></script>
+<script src="../../js/mmenu.min.js"></script>
+<script src="../../js/tippy.all.min.js"></script>
+<script src="../../js/simplebar.min.js"></script>
+<script src="../../js/bootstrap-slider.min.js"></script>
+<script src="../../js/bootstrap-select.min.js"></script>
+<script src="../../js/snackbar.js"></script>
+<script src="../../js/clipboard.min.js"></script>
+<script src="../../js/counterup.min.js"></script>
+<script src="../../js/magnific-popup.min.js"></script>
+<script src="../../js/slick.min.js"></script>
+<script src="../../js/custom.js"></script>
+<script src="../../js/show_password.js"></script>
+
+<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+<script>
+// Snackbar for user status switcher
+$('#snackbar-user-status label').click(function() { 
+	Snackbar.show({
+		text: 'Your status has been changed!',
+		pos: 'bottom-center',
+		showAction: false,
+		actionText: "Dismiss",
+		duration: 3000,
+		textColor: '#fff',
+		backgroundColor: '#383838'
+	}); 
+}); 
+</script>
+
+<!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
+<script src="js/chart.min.js"></script>
+<script>
+	Chart.defaults.global.defaultFontFamily = "Nunito";
+	Chart.defaults.global.defaultFontColor = '#888';
+	Chart.defaults.global.defaultFontSize = '14';
+
+	var ctx = document.getElementById('chart').getContext('2d');
+
+	var chart = new Chart(ctx, {
+		type: 'line',
+
+		// The data for our dataset
+		data: {
+			labels: ["January", "February", "March", "April", "May", "June"],
+			// Information about the dataset
+	   		datasets: [{
+				label: "Views",
+				backgroundColor: 'rgba(42,65,232,0.08)',
+				borderColor: '#2a41e8',
+				borderWidth: "3",
+				data: [196,132,215,362,210,252],
+				pointRadius: 5,
+				pointHoverRadius:5,
+				pointHitRadius: 10,
+				pointBackgroundColor: "#fff",
+				pointHoverBackgroundColor: "#fff",
+				pointBorderWidth: "2",
+			}]
+		},
+
+		// Configuration options
+		options: {
+
+		    layout: {
+		      padding: 10,
+		  	},
+
+			legend: { display: false },
+			title:  { display: false },
+
+			scales: {
+				yAxes: [{
+					scaleLabel: {
+						display: false
+					},
+					gridLines: {
+						 borderDash: [6, 10],
+						 color: "#d8d8d8",
+						 lineWidth: 1,
+	            	},
+				}],
+				xAxes: [{
+					scaleLabel: { display: false },  
+					gridLines:  { display: false },
+				}],
+			},
+
+		    tooltips: {
+		      backgroundColor: '#333',
+		      titleFontSize: 13,
+		      titleFontColor: '#fff',
+		      bodyFontColor: '#fff',
+		      bodyFontSize: 13,
+		      displayColors: false,
+		      xPadding: 10,
+		      yPadding: 10,
+		      intersect: false
+		    }
+		},
+
+
+});
+
+</script>
+
+<script>
+var myInput = document.getElementById("psw");
+var letter = document.getElementById("letter");
+var capital = document.getElementById("capital");
+var number = document.getElementById("number");
+var length = document.getElementById("length");
+
+
+
+// When the user clicks on the password field, show the message box
+myInput.onfocus = function() {
+document.getElementById("message").style.display = "block";
+}
+
+
+
+// When the user clicks outside of the password field, hide the message box
+myInput.onblur = function() {
+document.getElementById("message").style.display = "none";
+}
+
+
+
+// When the user starts to type something inside the password field
+myInput.onkeyup = function() {
+// Validate lowercase letters
+var lowerCaseLetters = /[a-z]/g;
+if(myInput.value.match(lowerCaseLetters)) {
+letter.classList.remove("invalid");
+letter.classList.add("valid");
+} else {
+letter.classList.remove("valid");
+letter.classList.add("invalid");
+}
+
+// Validate capital letters
+var upperCaseLetters = /[A-Z]/g;
+if(myInput.value.match(upperCaseLetters)) {
+capital.classList.remove("invalid");
+capital.classList.add("valid");
+} else {
+capital.classList.remove("valid");
+capital.classList.add("invalid");
+}
+
+
+
+// Validate numbers
+var numbers = /[0-9]/g;
+if(myInput.value.match(numbers)) {
+number.classList.remove("invalid");
+number.classList.add("valid");
+} else {
+number.classList.remove("valid");
+number.classList.add("invalid");
+}
+
+// Validate length
+if(myInput.value.length >= 8) {
+length.classList.remove("invalid");
+length.classList.add("valid");
+} else {
+length.classList.remove("valid");
+length.classList.add("invalid");
+}
+}
+</script>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+crossorigin="anonymous"></script>
+<script
+src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+crossorigin="anonymous"></script>
+</html>

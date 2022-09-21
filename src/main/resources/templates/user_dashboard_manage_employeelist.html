@@ -1,0 +1,502 @@
+<!-- /*  -->
+<!--  * Author : Srivani Tudi */ -->
+
+
+<!doctype html>
+<html lang="en" xmlns:th="https://thymleaf.org">
+<head>
+<!-- Basic Page Needs
+================================================== -->
+<title>360Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/colors/blue.css">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+
+</head>
+<body class="gray">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header Container
+================================================== -->
+		<header id="header-container"
+			class="fullwidth dashboard-header not-sticky">
+
+			<!-- Header -->
+			<div id="header">
+				<div class="container">
+
+					<!-- Left Side Content -->
+					<div class="left-side">
+
+						<!-- Logo -->
+						<div id="logo">
+							<a href="#"><img src="/../../images/logo360.jpg"
+								alt=""></a>
+						</div>
+
+						<!-- Main Navigation -->
+						<nav id="navigation">
+							<ul id="responsive">
+
+								<li><a href="#">Manage Candidates</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/user/newCandidateList}">New
+												Candidate List</a></li>
+										<li><a th:href="@{/user/assignedCandidateList}">Assigned
+												Candidate List</a></li>
+									</ul></li>
+
+								<li><a href="#">View</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/user/allEmployeesList}">EmployeeListOfCompany</a></li>
+										<li><a th:href="@{/user/BranchsList}">BanchListOfCompany</a></li>
+										<li><a th:href="@{/user/ecaListAll}">EmployeeClientAssociation List</a></li>
+										
+									</ul></li>
+
+								<li><a href="#">View Employees of this Branch</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/user/allemployeesList}">Employees
+												List</a></li>
+										<li><a th:href="@{/user/employeesList/recruiters}">Recruiters
+												List</a></li>
+										<li><a th:href="@{/user/employeesList/interviewers}">Interviewers
+												List</a></li>
+									</ul></li>
+
+
+
+
+								<li><a href="#">Manage Employees of This Branch</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/user/addEmployeeForm/{id}(id=${session.branchId})}">Add
+												New Employee</a></li>
+										<li><a th:href="@{/user/manageEmployees}">Update
+												Employees profile</a></li>
+									</ul></li>
+									
+									<li><a href="#">Manage Client</a>
+									<ul class="dropdown-nav">
+										<li><a
+																th:href="@{/user/clientregister/{userId}(userId=${session.userId})}"
+																class="btn btn-primary btn-sm mb-3">Add Client</a></li>
+										<li><a
+																th:href="@{/user/clientList/{userId}(userId=${session.userId})}"
+																class="btn btn-primary btn-sm mb-3"> Client List</a></li>
+									</ul></li>
+									
+
+							</ul>
+						</nav>
+						<div class="clearfix"></div>
+						<!-- Main Navigation / End -->
+
+					</div>
+					<!-- Left Side Content / End -->
+
+
+					<!-- Right Side Content / End -->
+					<div class="right-side">
+
+						<!--  User Notifications -->
+
+						<!--  User Notifications / End -->
+
+						<!-- User Menu -->
+						<div class="header-widget">
+
+							<!-- Messages -->
+							<div class="header-notifications user-menu">
+								<div class="header-notifications-trigger">
+									<a href="#"><div class="user-avatar status-online">
+											<img src="/../../images/user-avatar-small-01.jpg" alt="">
+										</div></a>
+								</div>
+
+								<!-- Dropdown -->
+								<div class="header-notifications-dropdown">
+
+									<!-- User Status -->
+									<div class="user-status">
+										<!-- User Name / Avatar -->
+										<div class="user-details">
+											<div class="user-avatar status-online">
+												<img src="/../../images/user-avatar-small-01.jpg" >
+											</div>
+											<div class="user-name">
+												<h2>
+													<span style='color:maroon;' th:text="${session.userName}"></span><span
+														style='color:green'th:text="${session.userRole}"></span>
+												</h2>
+											</div>
+										</div>
+
+										
+									</div>
+
+									<ul class="user-menu-small-nav">
+										<li><a th:href="@{/user/userDashboard}"><i
+												class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+										<li><a
+											th:href="@{user-dasboard-settings/{id}(id=${session.userId})}"
+											th:object="${newUserDetails}"><i
+												class="icon-material-outline-settings"></i> Settings</a></li>
+										<li><a th:href="@{/user/userLogout}"><i
+												class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+						<!-- User Menu / End -->
+
+						<!-- Mobile Navigation Button -->
+						<span class="mmenu-trigger">
+							<button class="hamburger hamburger--collapse" type="button">
+								<span class="hamburger-box"> <span
+									class="hamburger-inner"></span>
+								</span>
+							</button>
+						</span>
+
+					</div>
+					<!-- Right Side Content / End -->
+
+				</div>
+			</div>
+			<!-- Header / End -->
+
+		</header>
+		<div class="clearfix"></div>
+		<!-- Header Container / End -->
+
+
+		<!-- Dashboard Container -->
+		<div class="dashboard-container">
+
+			<!-- Dashboard Sidebar
+	================================================== -->
+			<div class="dashboard-sidebar">
+				<div class="dashboard-sidebar-inner" data-simplebar>
+					<div class="dashboard-nav-container">
+
+						<!-- Responsive Navigation Trigger -->
+						<a href="#" class="dashboard-responsive-nav-trigger"> <span
+							class="hamburger hamburger--collapse"> <span
+								class="hamburger-box"> <span class="hamburger-inner"></span>
+							</span>
+						</span> <span class="trigger-title">Dashboard Navigation</span>
+						</a>
+
+						<!-- Navigation -->
+						<div class="dashboard-nav">
+							<div class="dashboard-nav-inner">
+
+								<ul data-submenu-title="Start">
+									<li class="active"><a th:href="@{/user/userDashboard}"><i
+											class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+								</ul>
+
+								<ul data-submenu-title="Account">
+									<li><a
+										th:href="@{/user/user-dasboard-settings/{id}(id=${session.userId})}"
+										th:object="${newUserDetails}"><i
+											class="icon-material-outline-settings"></i> Settings</a></li>
+									<li><a th:href="@{/user/userLogout}"><i
+											class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- Navigation / End -->
+
+					</div>
+				</div>
+			</div>
+			<!-- Dashboard Sidebar / End -->
+
+
+			<!-- Dashboard Content
+	================================================== -->
+			<div class="dashboard-content-container" data-simplebar>
+				<div class="dashboard-content-inner">
+
+					<div class="dashboard-box margin-top-0" style="width: 110%">
+
+						<!-- Headline -->
+						<div class="headline">
+							<h3>
+								<i class="icon-material-outline-business-center"></i> <span
+									style="color: blue; display: inline;" th:text="${TableName}"></span>
+							</h3>
+						</div>
+						<div align="center"><h3>
+						<span style='color:green ' th:text="${updatemessage}">
+						</span></h3></div>
+						
+<!-- 						<div align="center" style="width: 100%"> -->
+
+						<link rel="stylesheet"
+								href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+								integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+								crossorigin="anonymous">
+
+							<table class="basic-table" id="candidateTable"
+								style="width: 100%">
+
+							<tr>
+								<th>Employee Name</th>
+								<th>Employee Role</th>
+								<th>Employee Mail</th>
+								<th>Branch Name</th>
+								<th>ActiveStatus</th>
+								<th>Actions</th>
+
+
+
+							</tr>
+
+							<tr th:each="employee : ${listOfEmployees}">
+								<td th:text="${employee.employeeName}"></td>
+								<td th:value="${employee.employeeRole}"><span
+									th:if="${employee.employeeRole=='Recruiter'}"><i
+										class='fas fa-user-tie' style='font-size: 48px; color: blue;'
+										title="Recruiter"></i></span> <span
+									th:if="${employee.employeeRole=='Manager'}"><i
+										class='fas fa-user-tie'
+										style='font-size: 48px; color: purple;' title="Manager"></i></span>
+								</td>
+								<td th:text="${employee.emailId}"></td>
+								<td th:text="${employee.branch.branchName}"></td>
+								<td th:value="${employee.isActive}"><span
+									th:if="${employee.isActive=='Y'}"><i
+										class='fas fa-user-alt' style='font-size: 30px; color: green;'></i></span>
+									<span th:if="${employee.isActive=='N'}"><i
+										class='fas fa-user-alt-slash'
+										style='font-size: 30px; color: red'></i></span></td>
+								<td><a
+									th:href="@{/user/updateEmployeeDetailsForm/{id}(id=${employee.employeeId})}"
+									class="button" style="color: white; background-color: black;"
+									title="Edit employee" type="submit" data-tippy-placement="top">
+										<i class='fas fa-user-edit' style='font-size: 24px'></i>
+								</a> <a
+									th:href="@{/user/activateEmployee/{id}(id=${employee.employeeId})}"
+									class="button" style="color: white; background-color: green;"
+									title="Activate/inActivate" type="submit"
+									data-tippy-placement="top"> <i style='font-size: 24px'
+										class='fas'>&#xf406;</i>
+								</a> <!-- 								<a th:href="@{/user/deleteEmployee/{id}(id=${employee.employeeId})}" -->
+									<!-- 									class="button" style="color: white; background-color: black;" -->
+									<!-- 									title="In_Activate" data-tippy-placement="top"><i class='fas fa-user-alt-slash' style='font-size:24px;color:red'></i></a> <a -->
+									<!-- 									th:href="@{/user/AccountsDetailsOfEmployee/{id}(id=${employee.employeeId})}" -->
+									<!-- 									class="button" style="color: white; background-color:navy;" -->
+									<!-- 									title="view_details" type="submit" data-tippy-placement="top"><i class='fas fa-landmark' style='font-size:24px'></i> bank</a></td> -->
+							</tr>
+							<!-- 							/user/accountDetailsForm/{id}(id=${employee.employeeId}) -->
+						</table>
+					</div>
+				</div>
+				<!-- Row / End -->
+
+				<!-- Footer -->
+				<div class="dashboard-footer-spacer"></div>
+				<div class="small-footer margin-top-15">
+					<div class="small-footer-copyrights">
+					 <strong>360Resourcing</strong>. All Rights Reserved.
+					</div>
+					
+					<div class="clearfix"></div>
+				</div>
+				<!-- Footer / End -->
+
+			</div>
+		</div>
+		<!-- Dashboard Content / End -->
+
+	</div>
+	<!-- Dashboard Container / End -->
+	<!-- Wrapper / End -->
+
+
+	<!-- Scripts
+================================================== -->
+	<script src="../../js/jquery-3.6.0.min.js"></script>
+	<script src="../../js/jquery-migrate-3.3.2.min.js"></script>
+	<script src="../../js/mmenu.min.js"></script>
+	<script src="../../js/tippy.all.min.js"></script>
+	<script src="../../js/simplebar.min.js"></script>
+	<script src="../../js/bootstrap-slider.min.js"></script>
+	<script src="../../js/bootstrap-select.min.js"></script>
+	<script src="../../js/snackbar.js"></script>
+	<script src="../../js/clipboard.min.js"></script>
+	<script src="../../js/counterup.min.js"></script>
+	<script src="../../js/magnific-popup.min.js"></script>
+	<script src="../../js/slick.min.js"></script>
+	<script src="../../js/custom.js"></script>
+	<script src="../../js/strongPassword.js"></script>
+	<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+		<script>
+			$(document).ready(function() {
+				var table = $('#candidateTable').DataTable({
+					"sAjaxDataProp" : ""
+				})
+			});
+		</script>
+
+	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+	<script>
+		// Snackbar for user status switcher
+		$('#snackbar-user-status label').click(function() {
+			Snackbar.show({
+				text : 'Your status has been changed!',
+				pos : 'bottom-center',
+				showAction : false,
+				actionText : "Dismiss",
+				duration : 3000,
+				textColor : '#fff',
+				backgroundColor : '#383838'
+			});
+		});
+	</script>
+
+	<!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
+	<script src="js/chart.min.js"></script>
+	<script>
+		Chart.defaults.global.defaultFontFamily = "Nunito";
+		Chart.defaults.global.defaultFontColor = '#888';
+		Chart.defaults.global.defaultFontSize = '14';
+
+		var ctx = document.getElementById('chart').getContext('2d');
+
+		var chart = new Chart(ctx, {
+			type : 'line',
+
+			// The data for our dataset
+			data : {
+				labels : [ "January", "February", "March", "April", "May",
+						"June" ],
+				// Information about the dataset
+				datasets : [ {
+					label : "Views",
+					backgroundColor : 'rgba(42,65,232,0.08)',
+					borderColor : '#2a41e8',
+					borderWidth : "3",
+					data : [ 196, 132, 215, 362, 210, 252 ],
+					pointRadius : 5,
+					pointHoverRadius : 5,
+					pointHitRadius : 10,
+					pointBackgroundColor : "#fff",
+					pointHoverBackgroundColor : "#fff",
+					pointBorderWidth : "2",
+				} ]
+			},
+
+			// Configuration options
+			options : {
+
+				layout : {
+					padding : 10,
+				},
+
+				legend : {
+					display : false
+				},
+				title : {
+					display : false
+				},
+
+				scales : {
+					yAxes : [ {
+						scaleLabel : {
+							display : false
+						},
+						gridLines : {
+							borderDash : [ 6, 10 ],
+							color : "#d8d8d8",
+							lineWidth : 1,
+						},
+					} ],
+					xAxes : [ {
+						scaleLabel : {
+							display : false
+						},
+						gridLines : {
+							display : false
+						},
+					} ],
+				},
+
+				tooltips : {
+					backgroundColor : '#333',
+					titleFontSize : 13,
+					titleFontColor : '#fff',
+					bodyFontColor : '#fff',
+					bodyFontSize : 13,
+					displayColors : false,
+					xPadding : 10,
+					yPadding : 10,
+					intersect : false
+				}
+			},
+
+		});
+	</script>
+
+
+	<!-- Google Autocomplete -->
+	<script>
+		function initAutocomplete() {
+			var options = {
+				types : [ '(cities)' ],
+			// componentRestrictions: {country: "us"}
+			};
+
+			var input = document.getElementById('autocomplete-input');
+			var autocomplete = new google.maps.places.Autocomplete(input,
+					options);
+
+			if ($('.submit-field')[0]) {
+				setTimeout(function() {
+					$(".pac-container").prependTo("#autocomplete-container");
+				}, 300);
+			}
+		}
+	</script>
+
+
+	<script type="text/javascript">
+		function Buttontoggle() {
+			var t = document.getElementById("isActive");
+			if (t.value == "Y") {
+				t.value = "N";
+			} else if (t.value == "N") {
+				t.value = "Y";
+			}
+		}
+	</script>
+	<!-- Google API -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=initAutocomplete"></script>
+
+
+</body>
+</html>

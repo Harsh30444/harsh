@@ -1,0 +1,643 @@
+ <!-- Auther: Vineeth kumar Mudham -->
+
+<!doctype html>
+<html lang="en" xmlns:th="https://thymleaf.org">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/colors/blue.css">
+  <style>
+		#map {
+		  height: 80%;
+		}
+
+		/*
+		 * Optional: Makes the sample page fill the window.
+		 */
+		html,
+		body {
+		  height: 80%;
+		  margin: 0;
+		  padding: 0;
+		}
+  </style>
+
+</head>
+<body  th:each="objBranchBrowse : ${listBranches}">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header Container
+================================================== -->
+		<!-- Header Container
+================================================== -->
+		<header id="header-container" class="fullwidth">
+
+			<!-- Header -->
+			<div id="header">
+				<div class="container">
+
+					<!-- Left Side Content -->
+					<div class="left-side">
+
+						<!-- Logo -->
+						<div id="logo">
+							<a href="#"><img src="../../images/360Logo.jpg"
+								alt=""></a>
+						</div>
+
+						<!-- Main Navigation -->
+					<nav id="navigation">
+							<ul id="responsive">
+
+								<li><a href="#">Manage Company</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/admin/addCompanyForm}">Add Company</a></li>
+										<li><a th:href="@{/admin/CompanyList}">Company List</a></li>
+
+									</ul></li>
+								<li><a href="#">Manage Branch</a>
+									<ul class="dropdown-nav">
+
+										<li><a th:href="@{/admin/BranchList}">Branches List</a></li>
+										<li><a th:href="@{/admin/browseBranches}">BrowseBranches
+												List</a></li>
+
+									</ul></li>
+								<li><a href="#">Manage Clients</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/admin/clientRegister}">Register Client</a></li>
+										<li><a th:href="@{/admin/clientList}">Client List</a></li>
+
+										<li><a th:href="@{/admin/addEca}">Associate Client to
+												Employee</a></li>
+										<li><a th:href="@{/admin/ecaListAll}">AssociatedList </a></li>
+
+
+									</ul></li>
+
+
+
+
+								<li><a href="#">Lists</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/admin/usersList}">Users List</a></li>
+
+										<li><a th:href="@{/admin/EmployeesList}">Employees
+												List</a></li>
+										<li><a th:href="@{/admin/candidateList}"> Candidate
+												List</a></li>
+
+									</ul></li>
+									<li><a href="#">Back</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/admin/browseBranches}">Back</a></li>
+
+									</ul></li>
+									
+							</ul>
+						</nav>
+						<div class="clearfix"></div>
+						<!-- Main Navigation / End -->
+
+					</div>
+					<!-- Left Side Content / End -->
+
+
+					<!-- Right Side Content / End -->
+					<div class="right-side">
+
+						
+								<!-- User Menu -->
+						<div class="header-widget">
+
+							<!-- Messages -->
+							<div class="header-notifications user-menu">
+								<div class="header-notifications-trigger">
+									<a href="#"><div class="user-avatar status-online">
+											<img src="../../images/user-avatar-small-01.jpg" alt="">
+										</div></a>
+								</div>
+
+								<!-- Dropdown -->
+								<div class="header-notifications-dropdown">
+
+									<!-- User Status -->
+									<div class="user-status">
+
+										<!-- User Name / Avatar -->
+										<div class="user-details">
+											<div class="user-avatar status-online">
+												<img src="../../images/user-avatar-small-01.jpg" alt="">
+											</div>
+											<div class="user-name">
+										<h3 style=color:maroon th:text="${session.adminUserName}"></h3>	 <span>AdminUser</span>
+
+											</div>
+										</div>
+
+										
+											</div>
+
+									<ul class="user-menu-small-nav">
+
+										<li><a
+										th:href="@{/admin/dashboard/{id}(id=${session.adminId})}"><i
+											class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+									
+										<li><a th:href="@{/admin/logout}"><i
+												class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+						<!-- User Menu / End -->
+							<!-- Sign In Popup
+================================================== -->
+							
+
+
+						</div>
+
+
+
+					</div>
+				</div>
+
+			</div>
+			<!-- User Menu / End -->
+
+			<!-- Mobile Navigation Button -->
+			<span class="mmenu-trigger">
+				<button class="hamburger hamburger--collapse" type="button">
+					<span class="hamburger-box"> <span class="hamburger-inner"></span>
+					</span>
+				</button>
+			</span>
+	</div>
+	<!-- Right Side Content / End -->
+
+	</div>
+	</div>
+	<!-- Header / End -->
+
+	</header>
+	<div class="clearfix"></div>
+	<!-- Header Container / End -->
+
+
+
+	<!-- Titlebar
+================================================== -->
+	<div class="single-page-header" 
+		data-background-image="../../images/single-company.jpg">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="single-page-header-inner">
+						<div class="left-side">
+							<div class="header-image">
+								<img src="../../images/360Logo.jpg" alt="">
+							</div>
+							<div class="header-details">
+							<h3  th:text="${objBranchBrowse.company.companyName}"></h3> <br>
+								<h3  th:text="${objBranchBrowse.branchName}">
+									
+									<span>Software House</span>
+								</h3>
+								<ul>
+									<li><div class="star-rating" data-rating="4.9"></div></li>
+									<li><img class="flag" src="../../images/flags/in.svg"
+										alt=""> India</li>
+									<li><div class="verified-badge-with-title">Verified</div></li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 	    <div id="map"></div> -->
+	    
+	    <div id="map"  th:each="objBranchBrowse : ${listBranches}">
+<div class="mapa"
+th:attr="data-latitude=${objBranchBrowse.latitude},data-longitude=${objBranchBrowse.longitude}"
+style="width: 100%; height: 100%">
+</div>
+</div>
+
+
+
+
+
+
+	<!-- Page Content
+================================================== -->
+	<div class="container">
+		<div class="row">
+
+			<!-- Content -->
+			<div class="col-xl-8 col-lg-8 content-right-offset">
+
+				<div class="single-page-section">
+					<h3 class="margin-bottom-25">About Branch</h3>
+					<p>360 Resourcing is dealing with the recruitment of the
+						candidates from different fields for different job roles. We are
+						dedicated in providing the dream job to the candidates.And for
+						freshers it will be their very first job. our process are very
+						simple and easy.</p>
+
+					<p>Capitalize on low hanging fruit to identify a ballpark value
+						added activity to beta test. Override the digital divide with
+						additional clickthroughs from DevOps. Nanotechnology immersion
+						along the information highway will close the loop on focusing
+						solely on the bottom line.</p>
+				</div>
+
+				<!-- Boxed List -->
+				<div class="boxed-list margin-bottom-60" >
+					<div class="boxed-list-headline">
+						<h3>
+							<i class="icon-material-outline-business-center"></i> Open
+							Positions
+						</h3>
+					</div>
+
+					<div class="listings-container compact-list-layout">
+
+						<!-- Job Listing -->
+						<a href="#" class="job-listing"> <!-- Job Listing Details -->
+							<div class="job-listing-details">
+
+								<!-- Details -->
+								<div class="job-listing-description">
+									<h3 class="job-listing-title">Python Developer</h3>
+
+									<!-- Job Listing Footer -->
+									<div class="job-listing-footer" >
+										<ul>
+											<li  th:text="${objBranchBrowse.branchAddress}"><i class="icon-material-outline-location-on"></i >
+												</li>
+											<li><i class="icon-material-outline-business-center"></i>
+												Full Time</li>
+											<li><i class="icon-material-outline-access-time"></i> 2
+												days ago</li>
+										</ul>
+									</div>
+								</div>
+
+							</div> <!-- Bookmark --> <span class="bookmark-icon"></span>
+						</a>
+
+						<!-- Job Listing -->
+						<a href="#" class="job-listing"> <!-- Job Listing Details -->
+							<div class="job-listing-details">
+
+								<!-- Details -->
+								<div class="job-listing-description">
+									<h3 class="job-listing-title">Junior Full Stack Developer</h3>
+
+									<!-- Job Listing Footer -->
+									<div class="job-listing-footer">
+										<ul>
+											<li th:text="${objBranchBrowse.branchAddress}"><i th:class="icon-material-outline-location-on"></i>
+												</li>
+											<li><i class="icon-material-outline-business-center"></i>
+												Full Time</li>
+											<li><i class="icon-material-outline-access-time"></i> 2
+												days ago</li>
+										</ul>
+									</div>
+								</div>
+
+							</div> <!-- Bookmark --> <span class="bookmark-icon"></span>
+						</a>
+					</div>
+
+				</div>
+				<!-- Boxed List / End -->
+
+			
+			</div>
+
+
+					
+					
+
+					<!-- Widget -->
+			
+
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- Spacer -->
+	<div class="margin-top-15"></div>
+	<!-- Spacer / End-->
+
+	<!-- Footer
+================================================== -->
+	<div id="footer">
+
+		
+		<!-- Footer Copyrights -->
+		<div class="footer-bottom-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-12">
+						© 2022 <strong>360Resourcing</strong>. All Rights Reserved.
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Footer Copyrights / End -->
+
+	</div>
+	<!-- Footer / End -->
+	
+
+	</div>
+	<!-- Wrapper / End -->
+
+
+	<!-- Leave a Review Popup
+================================================== -->
+	<div id="small-dialog"
+		class="zoom-anim-dialog mfp-hide dialog-with-tabs">
+
+		<!--Tabs -->
+		<div class="sign-in-form">
+
+			<ul class="popup-tabs-nav">
+				<li><a href="#">Leave a Review</a></li>
+			</ul>
+
+			<div class="popup-tabs-container">
+
+				<!-- Tab -->
+				<div class="popup-tab-content" id="tab">
+
+					<!-- Welcome Text -->
+					<div class="welcome-text">
+						<h3>What is it like to work at Acodia?</h3>
+
+						<!-- Form -->
+						<form method="post" id="leave-company-review-form">
+
+							<!-- Leave Rating -->
+							<div class="clearfix"></div>
+							<div class="leave-rating-container">
+								<div class="leave-rating margin-bottom-5">
+									<input type="radio" name="rating" id="rating-1" value="1"
+										required> <label for="rating-1"
+										class="icon-material-outline-star"></label> <input
+										type="radio" name="rating" id="rating-2" value="2" required>
+									<label for="rating-2" class="icon-material-outline-star"></label>
+									<input type="radio" name="rating" id="rating-3" value="3"
+										required> <label for="rating-3"
+										class="icon-material-outline-star"></label> <input
+										type="radio" name="rating" id="rating-4" value="4" required>
+									<label for="rating-4" class="icon-material-outline-star"></label>
+									<input type="radio" name="rating" id="rating-5" value="5"
+										required> <label for="rating-5"
+										class="icon-material-outline-star"></label>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+							<!-- Leave Rating / End-->
+					</div>
+
+
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="input-with-icon-left"
+								title="Leave blank to add review anonymously"
+								data-tippy-placement="bottom">
+								<i class="icon-material-outline-account-circle"></i> <input
+									type="text" class="input-text with-border" name="name"
+									id="name" placeholder="First and Last Name" />
+							</div>
+						</div>
+
+						<div class="col-xl-12">
+							<div class="input-with-icon-left">
+								<i class="icon-material-outline-rate-review"></i> <input
+									type="text" class="input-text with-border" name="reviewtitle"
+									id="reviewtitle" placeholder="Review Title" required />
+							</div>
+						</div>
+					</div>
+
+					<textarea class="with-border" placeholder="Review" name="message"
+						id="message" cols="7" required></textarea>
+
+					</form>
+
+					<!-- Button -->
+					<button
+						class="button margin-top-35 full-width button-sliding-icon ripple-effect"
+						type="submit" form="leave-company-review-form">
+						Leave a Review <i class="icon-material-outline-arrow-right-alt"></i>
+					</button>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- Leave a Review Popup / End -->
+
+
+	<!-- Scripts
+================================================== -->
+	<script src="../../js/jquery-3.6.0.min.js"></script>
+	<script src="../../js/jquery-migrate-3.3.2.min.js"></script>
+	<script src="../../js/mmenu.min.js"></script>
+	<script src="../../js/tippy.all.min.js"></script>
+	<script src="../../js/simplebar.min.js"></script>
+	<script src="../../js/bootstrap-slider.min.js"></script>
+	<script src="../../js/bootstrap-select.min.js"></script>
+	<script src="../../js/snackbar.js"></script>
+	<script src="../../js/clipboard.min.js"></script>
+	<script src="../../js/counterup.min.js"></script>
+	<script src="../../js/magnific-popup.min.js"></script>
+	<script src="../../js/slick.min.js"></script>
+	<script src="../../js/custom.js"></script>
+
+	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+	<script>
+		// Snackbar for user status switcher
+		$('#snackbar-user-status label').click(function() {
+			Snackbar.show({
+				text : 'Your status has been changed!',
+				pos : 'bottom-center',
+				showAction : false,
+				actionText : "Dismiss",
+				duration : 3000,
+				textColor : '#fff',
+				backgroundColor : '#383838'
+			});
+		});
+
+		// Snackbar for "place a bid" button
+		$('#snackbar-place-bid').click(function() {
+			Snackbar.show({
+				text : 'Your bid has been placed!',
+			});
+		});
+
+		// Snackbar for copy to clipboard button 
+		$('.copy-url-button').click(function() {
+			Snackbar.show({
+				text : 'Copied to clipboard!',
+			});
+		});
+	</script>
+
+	<!-- Google API & Maps -->
+	<!-- Geting an API Key: https://developers.google.com/maps/documentation/javascript/get-api-key -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
+	<script src="../../js/infobox.min.js"></script>
+	<script src="../../js/markerclusterer.js"></script>
+	<script src="../../js/maps.js"></script>
+	
+	
+	
+	
+	 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+      <!-- jsFiddle will insert css and js -->
+       <script th:inline="javascript">
+       let map;
+var dtlat = parseFloat($('.mapa').attr('data-latitude'));
+var dtlng = parseFloat($('.mapa').attr('data-longitude'));
+  // The following example creates complex markers to indicate beaches near
+  // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
+  // to the base of the flagpole.
+  function initMap() {
+   const uluru = { lat:  20.5937, lng:  78.9629};
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 4,
+      center: uluru,
+    });
+
+
+
+
+
+    setMarkers(map);
+
+
+  }
+
+  // Data for the markers consisting of a name, a LatLng and a zIndex for the
+  // order in which these markers should display on top of each other.
+ const beaches = [
+["Bondi Beach", dtlat, dtlng, 4],
+];
+
+  function setMarkers(map) {
+    // Adds markers to the map.
+    // Marker sizes are expressed as a Size of X,Y where the origin of the image
+    // (0,0) is located in the top left of the image.
+    // Origins, anchor positions and coordinates of the marker increase in the X
+    // direction to the right and in the Y direction down.
+    const image = {
+      url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+      // This marker is 20 pixels wide by 32 pixels high.
+      size: new google.maps.Size(20, 32),
+      // The origin for this image is (0, 0).
+      origin: new google.maps.Point(0, 0),
+      // The anchor for this image is the base of the flagpole at (0, 32).
+      anchor: new google.maps.Point(0, 32),
+    };
+    // Shapes define the clickable region of the icon. The type defines an HTML
+    // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+    // The final coordinate closes the poly by connecting to the first coordinate.
+    const shape = {
+      coords: [1, 1, 1, 20, 18, 20, 18, 1],
+      type: "poly",
+    };
+
+
+
+
+    for (let i = 0; i < beaches.length; i++) {
+        const beach = beaches[i];
+        const marker =  new google.maps.Marker({
+        position: { lat: beach[1], lng: beach[2] },
+        map,
+       // icon: image,
+        shape: shape,
+        title: beach[0],
+        zIndex: beach[3],
+      });
+
+ 		 const contentString =
+	      '<div id="content">' +
+	      '<div id="siteNotice">' +
+	      "</div>" +
+	      '<h1 id="firstHeading" class="firstHeading">' +beach[0]
+	      ' </h1><div id="bodyContent">' +
+	      beach +
+	      "</div>" +
+	      "</div>";
+	      const infowindow = new google.maps.InfoWindow({
+		 	content: contentString,
+		  });
+
+	    marker.addListener("click", () => {
+		        infowindow.open({
+		        anchor: marker,
+		        map,
+		        shouldFocus: false,
+		      });
+	    });
+
+
+    }
+
+
+
+
+  }
+
+window.initMap = initMap;
+</script>
+
+    <!--
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKfEYor3RIgWycRR9CO3DWovwXOewY7BI&callback=initMap&v=weekly"
+      defer
+    ></script>
+    
+    
+    
+    
+    
+
+</body>
+</html>

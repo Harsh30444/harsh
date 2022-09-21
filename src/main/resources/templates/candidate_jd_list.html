@@ -1,0 +1,290 @@
+<!-- ============================= -->
+
+<!-- 	@author: Praveen Gudimalla -->
+
+<!--  ==============================-->
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/colors/blue.css">
+
+</head>
+<body>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header Container
+================================================== -->
+		<header id="header-container" class="fullwidth not-sticky">
+
+			<!-- Header -->
+			<div id="header">
+				<div class="container">
+
+					<!-- Left Side Content -->
+					<div class="left-side">
+
+						<!-- Logo -->
+						<div id="logo">
+							<a href="#"><img src="../../images/360Logo.jpg" alt=""></a>
+						</div>
+
+						<!-- Main Navigation -->
+						<nav id="navigation">
+							<ul id="responsive">
+
+								
+
+								<li><a href="#">Next</a>
+									<ul class="dropdown-nav">
+										<li>
+										<span
+											th:if="${session.candidateObj == NULL}"><a
+												th:href="@{/candidate/logout}">Logout</a></span>
+												 <span
+											th:if="${session.candidateObj != NULL}"><a
+												th:href="@{/candidate/dashboard/{id}(id=${session.candidateObj.candidateId})}">Dashboard</a></span>
+										</li>
+									</ul></li>
+
+
+								<li><a href="#">Back</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/resourcing}">Jobs Seacrh</a></li>
+									</ul></li>
+						</nav>
+						<div class="clearfix"></div>
+						<!-- Main Navigation / End -->
+
+					</div>
+					<!-- Left Side Content / End -->
+
+
+					<!-- Right Side Content / End -->
+					<div class="right-side">
+
+						<!--  User Notifications -->
+
+						<!--  User Notifications / End -->
+
+						<!-- User Menu -->
+						<div class="header-widget">
+
+							<!-- Messages -->
+							<div class="header-notifications user-menu">
+								<div class="header-notifications-trigger">
+									<a href="#"><div class="user-avatar status-online">
+											<img src="../../images/user-avatar-small-01.jpg" alt="">
+										</div></a>
+								</div>
+
+								
+							</div>
+
+						</div>
+						<!-- User Menu / End -->
+
+						<!-- Mobile Navigation Button -->
+						<span class="mmenu-trigger">
+							<button class="hamburger hamburger--collapse" type="button">
+								<span class="hamburger-box"> <span
+									class="hamburger-inner"></span>
+								</span>
+							</button>
+						</span>
+
+					</div>
+					<!-- Right Side Content / End -->
+
+				</div>
+			</div>
+			<!-- Header / End -->
+
+		</header>
+		<div class="clearfix"></div>
+		<!-- Header Container / End -->
+
+		<!-- Page Content
+================================================== -->
+		<!-- <div class="full-page-container with-map"> -->
+
+			
+			<!-- Full Page Sidebar / End -->
+
+
+			<!-- Full Page Content -->
+			<div class="full-page-content-container" data-simplebar>
+				<div class="full-page-content-inner">
+
+					
+
+					<div>
+						<h3>
+							<b><span style="color: red" th:text="${message}"></span></b>
+						</h3>
+					</div>
+					<div>
+						<h3>
+							<b><span style="color: green" th:text="${success}"></span></b>
+						</h3>
+					</div>
+
+				
+				<h2>
+					<b><span style="color: purple;" th:text="${feedback}"></span></b>
+				</h2>
+				
+
+				<div
+						class="listings-container compact-list-layout margin-top-35 margin-bottom-25"
+						th:each="jd : ${jdList}">
+						<table>
+							<tbody>
+								<tr>
+									<td>
+										<!-- Job Listing -->
+										<a
+										th:href="@{/feebackOfJd/{jdId}(jdId=${jd.jdId})}"
+										class="job-listing"> 
+										<!-- Job Listing Details -->
+											<div class="job-listing-details">
+
+												<!-- Logo -->
+												<div class="job-listing-company-logo">
+													<img src="images/company-logo-01.png" alt="">
+												</div>
+
+											
+
+											<!-- Details -->
+												<div class="job-listing-description">
+												
+												<h3 class="job-listing-title" th:text="${jd.position}"></h3>
+													
+													<!-- Job Listing Footer -->
+													<div class="job-listing-footer">
+														<ul>
+															<li><i class="icon-material-outline-business"
+																th:text="${jd.department}"></i>
+
+																</li>
+															<li><i class="icon-material-outline-location-on"
+																th:text="${jd.location}"></i></li>
+															<li><i class="icon-material-outline-business-center"
+																th:text="${jd.shifts}"></i></li>
+															<li><i class="icon-material-outline-access-time"
+																th:text="${jd.createdDate}"></i></li>
+														</ul>
+													</div>
+												</div>
+												
+											</div>
+									</a>
+
+
+									</td>
+							</tbody>
+						</table>
+					</div>
+					 
+					</a>
+
+				</div>
+
+				
+
+				<!-- Footer -->
+				<div class="full-page-content-inner">
+				<div class="small-footer margin-top-15">
+					<div class="small-footer-copyrights">
+						© 2022 <strong>360Resourcing</strong>. All Rights Reserved.
+					</div>
+
+					<div class="clearfix"></div>
+				</div></div>
+				<!-- Footer / End -->
+
+			</div>
+			
+			
+		</div>
+		<!-- Full Page Content / End -->
+
+
+		
+
+	</div>
+
+
+	</div>
+	<!-- Wrapper / End -->
+
+	<!-- Scripts
+================================================== -->
+	<script src="../js/jquery-3.6.0.min.js"></script>
+	<script src="../js/jquery-migrate-3.3.2.min.js"></script>
+	<script src="../js/mmenu.min.js"></script>
+	<script src="../js/tippy.all.min.js"></script>
+	<script src="../js/simplebar.min.js"></script>
+	<script src="../js/bootstrap-slider.min.js"></script>
+	<script src="../js/bootstrap-select.min.js"></script>
+	<script src="../js/snackbar.js"></script>
+	<script src="../js/clipboard.min.js"></script>
+	<script src="../js/counterup.min.js"></script>
+	<script src="../js/magnific-popup.min.js"></script>
+	<script src="../js/slick.min.js"></script>
+	<script src="../js/custom.js"></script>
+
+	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+	<script>
+		// Snackbar for user status switcher
+		$('#snackbar-user-status label').click(function() {
+			Snackbar.show({
+				text : 'Your status has been changed!',
+				pos : 'bottom-center',
+				showAction : false,
+				actionText : "Dismiss",
+				duration : 3000,
+				textColor : '#fff',
+				backgroundColor : '#383838'
+			});
+		});
+	</script>
+
+	<!-- Google Autocomplete -->
+	<script>
+		function initAutocomplete() {
+			var options = {
+				types : [ '(cities)' ],
+			// componentRestrictions: {country: "us"}
+			};
+
+			var input = document.getElementById('autocomplete-input');
+			var autocomplete = new google.maps.places.Autocomplete(input,
+					options);
+		}
+	</script>
+
+	<!-- Google API & Maps -->
+	<!-- Geting an API Key: https://developers.google.com/maps/documentation/javascript/get-api-key -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
+	<script src="../js/infobox.min.js"></script>
+	<script src="../js/markerclusterer.js"></script>
+	<script src="../js/maps.js"></script>
+
+</body>
+</html>

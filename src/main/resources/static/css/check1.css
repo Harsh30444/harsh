@@ -1,0 +1,10 @@
+@media print {
+	body *:not(#my-section):not(#my-section *){
+	visibility: hidden;
+	}
+	#my-section{
+	position: absolute;
+	top: 0;
+	left: 0;
+	}
+}

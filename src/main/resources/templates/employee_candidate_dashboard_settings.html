@@ -1,0 +1,534 @@
+
+<!-- ============================= -->
+
+<!-- 	Author: Praveen Gudimalla -->
+
+<!--  ==============================-->
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360 Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../../../css/style.css">
+<link rel="stylesheet" href="../../../css/colors/blue.css">
+
+
+</head>
+<body class="gray">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+	<!-- Header Container
+================================================== -->
+		<header id="header-container"
+			class="fullwidth dashboard-header not-sticky">
+
+			<!-- Header -->
+			<div id="header">
+				<div class="container">
+					<!-- Left Side Content -->
+					<div class="left-side">
+						<!-- Logo -->
+						<div id="logo">
+							<a href="#"><img src="/../../images/logo360.jpg" alt=""></a>
+						</div>
+						<!-- Main Navigation -->
+						<nav id="navigation">
+							<ul id="responsive">
+								<li><a href="#">Manage Candidates</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/emp/candidateList/{employeeId}(employeeId=${session.employeeObj.employeeId})}">
+												Candidate List assigned to you</a></li>
+										<li><a th:href="@{/emp/candidateList}"> all Candidate
+												List</a></li>
+
+									</ul></li>
+								<li><a href="#">View Interviewers</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/emp/interviewersList}"> all
+												Interviewers List</a></li>
+									</ul></li>
+								<li><a href="#">View Clients</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/emp/employeeClients}">My
+												client List</a></li>
+									</ul></li>
+
+								<li><a href="#">Schedule Interviews</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/scheduleList}">Schedule List</a></li>
+										<li><a
+											th:href="@{/emp/feedbackList/{id}(id=${session.employeeObj.employeeId})}">Feedback
+												List</a></li>
+										<li><a
+											th:href="@{/emp/reScheduleList/{id}(id=${session.employeeObj.employeeId})}">ReSchedule</a></li>
+										<li><a th:href="@{/emp/finalFeedbackList}">Result</a></li>
+
+
+
+									</ul></li>
+							</ul>
+							<ul>
+								<li><a href="#">Manage skills</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/emp/addSkillByManager/{id}(id=${session.employeeObj.employeeId})}">Adding
+												Skills</a></li>
+
+										<li><a
+											th:href="@{/emp/skillListByManager/{id}(id=${session.employeeObj.employeeId})}">Skills
+												List Added by Recruiter</a></li>
+
+									</ul></li>
+							</ul>
+						</nav>
+					</div>
+					<div class="clearfix"></div>
+					<!-- Main Navigation / End -->
+					<!-- Left Side Content / End -->
+					<!-- Right Side Content -->
+					<div class="right-side">
+						<!--  User Notifications -->
+						<!--  User Notifications / End -->
+						<!-- User Menu -->
+						<div class="header-widget">
+							<!-- Messages -->
+							<div class="header-notifications user-menu">
+								<div class="header-notifications-trigger">
+									<a href="#"><div class="user-avatar status-online">
+											<img src="/../../images/user-avatar-small-01.jpg" alt="">
+										</div></a>
+								</div>
+								<!-- Dropdown -->
+								<div class="header-notifications-dropdown">
+									<!-- User Status -->
+									<div class="user-status">
+										<!-- User Name / Avatar -->
+										<div class="user-details">
+											<div class="user-avatar status-online">
+												<img src="/../../images/user-avatar-small-01.jpg" alt="">
+											</div>
+											<div class="user-name">
+												<h3 style="color: maroon"
+													th:text="${session.employeeObj.employeeName}"></h3>
+												<h4 style="color: green"
+													th:text="${session.employeeObj.employeeRole}"></h4>
+											</div>
+											<!-- User Status Switcher -->
+										</div>
+									</div>
+									<ul class="user-menu-small-nav">
+										<li><a th:href="@{/emp/employeeDashboard}"><i
+												class="icon-material-outline-dashboard"></i>DashBoard</a></li>
+										<li><a
+											th:href="@{/emp/employeeDasboardSettings/{id}(id=${session.employeeObj.employeeId})}"><i
+												class="icon-material-outline-settings"></i> Settings</a></li>
+										<li><a th:href="@{/emp/employeeLogout}"><i
+												class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!-- User Menu / End -->
+						<!-- Mobile Navigation Button -->
+						<span class="mmenu-trigger">
+							<button class="hamburger hamburger--collapse" type="button">
+								<span class="hamburger-box"> <span
+									class="hamburger-inner"></span>
+								</span>
+							</button>
+						</span>
+					</div>
+					<!-- Right Side Content / End -->
+				</div>
+			</div>
+			<!-- Header / End -->
+		</header>
+		<div class="clearfix"></div>
+		<!-- Header Container / End -->
+		<!-- Dashboard Container -->
+		<div class="dashboard-container">
+		<!-- Dashboard Sidebar
+	================================================== -->
+			<div class="dashboard-sidebar">
+				<div class="dashboard-sidebar-inner" data-simplebar>
+					<div class="dashboard-nav-container">
+
+						<!-- Responsive Navigation Trigger -->
+						<a href="#" class="dashboard-responsive-nav-trigger"> <span
+							class="hamburger hamburger--collapse"> <span
+								class="hamburger-box"> <span class="hamburger-inner"></span>
+							</span>
+						</span> <span class="trigger-title">Dashboard Navigation</span>
+						</a>
+
+						<!-- Navigation -->
+						<div class="dashboard-nav">
+							<div class="dashboard-nav-inner">
+
+
+
+
+
+								<!-- 			Education && Experiendce Started  ===============
+================================================================ -->
+								<ul data-submenu-title="Education and Experience">
+									<li class="active"><a
+										th:href="@{/emp/candidate/educationList/{candidateId}(candidateId=${candidate.candidateId})}"><i
+											class="icon-material-outline-settings"></i>CandidateEducationDetails</a></li>
+									<li class="active"><a
+										th:href="@{/emp/candidate/employmentList/{candidateId}(candidateId=${candidate.candidateId})}"><i
+											class="icon-material-outline-settings"></i>CandidateExperienceDetails
+									</a></li>
+									<li class="active"><a
+										th:href="@{/emp/candidate/docList/{candidateId}(candidateId=${candidate.candidateId})}">Candidate
+											Documents<i class="icon-material-outline-settings"></i>
+									</a></li>
+									<li class="active"><a
+										th:href="@{/emp/candidate/dashboardSettings/{id}(id=${candidate.candidateId})}">Candidate
+											DetailsPage<i class="icon-material-outline-settings"></i>
+									</a></li>
+								</ul>
+
+								<!-- 			Education && Experiendce Ended  ============================
+============================================================================ -->
+
+
+
+							</div>
+						</div>
+						<!-- Navigation / End -->
+
+					</div>
+				</div>
+			</div>
+			<!-- Dashboard Sidebar / End -->
+
+
+			<!-- Dashboard Content
+	================================================== -->
+			<form class="dashboard-content-container" data-simplebar
+				th:each="candidateObj:${candidate}" enctype="multipart/form-data"
+				th:action="@{/candidate/updateCandidateDetails/{id}(id=${candidateObj.candidateId})}"
+				method="post">
+
+
+				<!-- Row -->
+				<div class="row">
+
+					<!-- Dashboard Box -->
+					<div class="col-xl-12">
+						<div class="dashboard-box margin-top-0">
+
+							<!-- Headline -->
+							<div class="headline">
+								<h3>
+									<i class="icon-material-outline-account-circle"></i> Candidate
+									Details
+								</h3>
+							</div>
+
+							<div class="content with-padding padding-bottom-0">
+								<div class="row">
+
+
+
+									<div class="col-xl-6">
+										<div class="submit-field">
+											<h5>First Name</h5>
+											<input type="text" class="with-border"
+												placeholder="firstName" name="firstName"
+												pattern="[A-Za-z\s]{1,20}"
+												title="it should be in A-Za-z format"
+												th:value="${candidateObj.firstName}" readonly />
+										</div>
+									</div>
+
+									<div class="col-xl-6">
+										<div class="submit-field">
+											<h5>Last Name</h5>
+											<input type="text" class="with-border" placeholder="lastName"
+												name="lastName" pattern="[A-Za-z\s]{1,20}"
+												title="it should be in A-Za-z format"
+												th:value="${candidateObj.lastName}" readonly />
+										</div>
+									</div>
+
+
+									<div class="col-xl-6">
+										<div class="submit-field">
+											<h5>Address</h5>
+											<input type="text" class="with-border" placeholder="address"
+												name="address" pattern="[A-Za-z\s]{1,15}"
+												title="it should be in A-Za-z format"
+												th:value="${candidateObj.address}" readonly />
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<div class="submit-field">
+											<h5>Mobile</h5>
+											<input type="tel" class="with-border"
+												placeholder="mobileNumber" name="mobileNumber"
+												pattern="[6|7|8|9]{1}\d{9}"
+												th:value="${candidateObj.mobileNumber}" readonly />
+										</div>
+									</div>
+									<div class="col-xl-6">
+										<div class="submit-field">
+											<h5>Email</h5>
+											<input type="email" class="with-border" placeholder="email"
+												name="email" th:value="${candidateObj.email}"
+												pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+												title="form with an email field that that must be in the following order:
+																characters@characters.domain (characters followed by an @ sign, followed by more characters,
+																and then (dot) like . After the (dot) like. sign, add at least 2 letters from a to z:"
+												readonly />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+		</div>
+		<!-- Dashboard Box -->
+		<div class="col-xl-12">
+			<div class="dashboard-box">
+
+				<!-- Headline -->
+
+				<div class="content">
+					<ul class="fields-ul">
+
+						<li>
+							<!-- <div class="col-xl-12">
+								<div class="submit-field">
+									<h5>Introduction</h5>
+									<textarea cols="30" rows="5" class="with-border" id="about"
+										name="about" th:utext="${candidateObj.about}"></textarea>
+								</div>
+							</div> -->
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- Dashboard Box -->
+		<div class="col-xl-12">
+			<div id="test1" class="dashboard-box"></div>
+		</div>
+
+	</div>
+	</form>
+	<!-- Row / End -->
+
+	<!-- Footer -->
+	<div class="dashboard-footer-spacer"></div>
+	<div class="small-footer margin-top-15">
+		<div class="small-footer-copyrights">
+			<strong>360 Resourcing</strong>. All Rights Reserved.
+		</div>
+		<!-- <ul class="footer-social-links">
+			<li><a href="#" title="Facebook" data-tippy-placement="top">
+					<i class="icon-brand-facebook-f"></i>
+			</a></li>
+			<li><a href="#" title="Twitter" data-tippy-placement="top">
+					<i class="icon-brand-twitter"></i>
+			</a></li>
+			<li><a href="#" title="Google Plus" data-tippy-placement="top">
+					<i class="icon-brand-google-plus-g"></i>
+			</a></li>
+			<li><a href="#" title="LinkedIn" data-tippy-placement="top">
+					<i class="icon-brand-linkedin-in"></i>
+			</a></li>
+		</ul> -->
+		<div class="clearfix"></div>
+	</div>
+	<!-- Footer / End -->
+
+	</div>
+	</div>
+	<!-- Dashboard Content / End -->
+
+	</div>
+	<!-- Dashboard Container / End -->
+
+	</div>
+	<!-- Wrapper / End -->
+
+
+	<!-- Scripts
+================================================== -->
+	<script src="../../../js/jquery-3.6.0.min.js"></script>
+	<script src="../../../js/jquery-migrate-3.3.2.min.js"></script>
+	<script src="../../../js/mmenu.min.js"></script>
+	<script src="../../../js/tippy.all.min.js"></script>
+	<script src="../../../js/simplebar.min.js"></script>
+	<script src="../../../js/bootstrap-slider.min.js"></script>
+	<script src="../../../js/bootstrap-select.min.js"></script>
+	<script src="../../../js/snackbar.js"></script>
+	<script src="../../../js/clipboard.min.js"></script>
+	<script src="../../../js/counterup.min.js"></script>
+	<script src="../../../js/magnific-popup.min.js"></script>
+	<script src="../../../js/slick.min.js"></script>
+	<script src="../../../js/custom.js"></script>
+	<!-- 	<script src="../../../js/skills.js"></script> -->
+	<script src="../../js/../multidropdown.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+	<script>
+		$(document).ready(function() {
+			var table = $('#candidateTable').DataTable({
+				"sAjaxDataProp" : ""
+			})
+		});
+	</script>
+
+	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+	<script>
+		// Snackbar for user status switcher
+		$('#snackbar-user-status label').click(function() {
+			Snackbar.show({
+				text : 'Your status has been changed!',
+				pos : 'bottom-center',
+				showAction : false,
+				actionText : "Dismiss",
+				duration : 3000,
+				textColor : '#fff',
+				backgroundColor : '#383838'
+			});
+		});
+	</script>
+
+	<!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
+	<script src="../../js/chart.min.js"></script>
+	<script>
+		Chart.defaults.global.defaultFontFamily = "Nunito";
+		Chart.defaults.global.defaultFontColor = '#888';
+		Chart.defaults.global.defaultFontSize = '14';
+
+		var ctx = document.getElementById('chart').getContext('2d');
+
+		var chart = new Chart(ctx, {
+			type : 'line',
+
+			// The data for our dataset
+			data : {
+				labels : [ "January", "February", "March", "April", "May",
+						"June" ],
+				// Information about the dataset
+				datasets : [ {
+					label : "Views",
+					backgroundColor : 'rgba(42,65,232,0.08)',
+					borderColor : '#2a41e8',
+					borderWidth : "3",
+					data : [ 196, 132, 215, 362, 210, 252 ],
+					pointRadius : 5,
+					pointHoverRadius : 5,
+					pointHitRadius : 10,
+					pointBackgroundColor : "#fff",
+					pointHoverBackgroundColor : "#fff",
+					pointBorderWidth : "2",
+				} ]
+			},
+
+			// Configuration options
+			options : {
+
+				layout : {
+					padding : 10,
+				},
+
+				legend : {
+					display : false
+				},
+				title : {
+					display : false
+				},
+
+				scales : {
+					yAxes : [ {
+						scaleLabel : {
+							display : false
+						},
+						gridLines : {
+							borderDash : [ 6, 10 ],
+							color : "#d8d8d8",
+							lineWidth : 1,
+						},
+					} ],
+					xAxes : [ {
+						scaleLabel : {
+							display : false
+						},
+						gridLines : {
+							display : false
+						},
+					} ],
+				},
+
+				tooltips : {
+					backgroundColor : '#333',
+					titleFontSize : 13,
+					titleFontColor : '#fff',
+					bodyFontColor : '#fff',
+					bodyFontSize : 13,
+					displayColors : false,
+					xPadding : 10,
+					yPadding : 10,
+					intersect : false
+				}
+			},
+
+		});
+	</script>
+
+
+	<!-- Google Autocomplete -->
+	<script>
+		function initAutocomplete() {
+			var options = {
+				types : [ '(cities)' ],
+			// componentRestrictions: {country: "us"}
+			};
+
+			var input = document.getElementById('autocomplete-input');
+			var autocomplete = new google.maps.places.Autocomplete(input,
+					options);
+
+			if ($('.submit-field')[0]) {
+				setTimeout(function() {
+					$(".pac-container").prependTo("#autocomplete-container");
+				}, 300);
+			}
+		}
+	</script>
+
+	<!-- Google API -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=initAutocomplete"></script>
+
+</body>
+</html>

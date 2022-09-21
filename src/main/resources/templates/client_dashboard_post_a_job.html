@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/colors/blue.css">
+<script src="/js/client_dropdown.js"></script>
+
+</head>
+<body class="gray">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header Container
+================================================== -->
+		<header id="header-container"
+			class="fullwidth dashboard-header not-sticky">
+
+			<!-- Header -->
+			<div id="header">
+				<div class="container">
+
+					<!-- Left Side Content -->
+					<div class="left-side">
+
+						<!-- Logo -->
+						<div id="logo">
+							<a href="#"><img src="../../images/360Logo.jpg" alt=""></a>
+						</div>
+
+						<!-- Main Navigation -->
+						<nav id="navigation">
+							<ul id="responsive">
+
+								<li><a href="#" class="current">Dashboard</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/client/GoToDashboard/{id}(id=${session.clientObj.clientId})}"><i
+												class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+									</ul></li>
+
+								<li><a href="#" class="current">Job Description</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/client/dashboard-post-a-job/{id}(id=${session.clientObj.clientId})}">Post
+												A Job</a></li>
+										<li><a
+											th:href="@{/client/jdList/{id}(id=${session.clientObj.clientId})}">Job
+												List</a></li>
+									</ul></li>
+
+								<li><a href="#" class="current">Settings</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/client/updateClientDetails/{id}(id=${session.clientObj.clientId})}"><i
+												class="icon-material-outline-settings"></i> Settings</a></li>
+									</ul></li>
+
+								<li><a href="#" class="current">My Employees</a>
+									<ul class="dropdown-nav">
+										<li><a
+											th:href="@{/eca/ecaListForSingleClient/{id}(id=${session.clientObj.clientId})}">My
+												Employees</a></li>
+									</ul></li>
+
+								<li><a href="#" class="current">Department</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/dept/addDept}">AddDepartment</a></li>
+										<li><a th:href="@{/dept/deptList}">Department List</a></li>
+									</ul></li>
+
+							</ul>
+						</nav>
+						<div class="clearfix"></div>
+
+
+						<!-- User Profile /End -->
+					</div>
+					<!-- Left Side Content / End -->
+
+
+
+
+					<!-- Right Side Content / End -->
+					<div class="right-side">
+
+
+
+						<!-- User Menu -->
+						<div class="header-widget">
+
+							<!-- Messages -->
+							<div class="header-notifications user-menu">
+								<div class="header-notifications-trigger">
+									<a href="#"><div class="user-avatar status-online">
+											<img src="../../images/user-avatar-small-01.jpg" alt="">
+										</div></a>
+								</div>
+
+								<!-- Dropdown -->
+								<div class="header-notifications-dropdown">
+
+									<!-- User Status -->
+									<div class="user-status">
+
+										<!-- User Name / Avatar -->
+										<div class="user-details">
+											<div class="user-avatar status-online">
+												<img src="../../images/user-avatar-small-01.jpg" alt="">
+											</div>
+											<div class="user-name">
+												<h3 style="color: green"
+													th:text="${session.clientObj.clientName}"></h3>
+												<span>Client</span>
+											</div>
+										</div>
+
+										
+										 
+											
+									</div>
+
+									<ul class="user-menu-small-nav">
+										<li><a
+											th:href="@{/client/GoToDashboard/{id}(id=${session.clientObj.clientId})}"></i>
+												Dashboard</a></li>
+										<li><a
+											th:href="@{/client/updateClientDetails/{id}(id=${session.clientObj.clientId})}"></i>
+												Settings</a></li>
+										<li><a th:href="@{/resourcing}"><i
+												class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+						<!-- User Menu / End -->
+
+						<!-- Mobile Navigation Button -->
+						<span class="mmenu-trigger">
+							<button class="hamburger hamburger--collapse" type="button">
+								<span class="hamburger-box"> <span
+									class="hamburger-inner"></span>
+								</span>
+							</button>
+						</span>
+
+					</div>
+					<!-- Right Side Content / End -->
+
+				</div>
+			</div>
+			<!-- Header / End -->
+
+		</header>
+		<div class="clearfix"></div>
+		<!-- Header Container / End -->
+
+
+		<!-- Dashboard Container -->
+		<div class="dashboard-container">
+
+			<!-- Dashboard Sidebar
+	================================================== -->
+			<div class="dashboard-sidebar">
+				<div class="dashboard-sidebar-inner" data-simplebar>
+					<div class="dashboard-nav-container">
+
+						<!-- Responsive Navigation Trigger -->
+						<a href="#" class="dashboard-responsive-nav-trigger"> <span
+							class="hamburger hamburger--collapse"> <span
+								class="hamburger-box"> <span class="hamburger-inner"></span>
+							</span>
+						</span> <span class="trigger-title">Dashboard Navigation</span>
+						</a>
+
+						<!-- Navigation -->
+						<div class="dashboard-nav">
+							<div class="dashboard-nav-inner">
+
+
+								<ul data-submenu-title="Organize and Manage">
+									<li><a href="#"><i
+											class="icon-material-outline-business-center"></i> Jobs</a>
+										<ul>
+											<li><a
+												th:href="@{/client/jdList/{id}(id=${session.clientObj.clientId})}">Manage
+													Jobs <span class="nav-tag">3</span>
+											</a></li>
+											<li><a
+												th:href="@{/client/dashboard-post-a-job/{id}(id=${session.clientObj.clientId})}">Post
+													a Job</a></li>
+										</ul></li>
+
+								</ul>
+
+								<ul data-submenu-title="Account">
+									<li><a
+										th:href="@{/client/updateClientDetails/{id}(id=${session.clientObj.clientId})}"><i
+											class="icon-material-outline-settings"></i> Settings</a></li>
+									<li><a th:href="@{/resourcing}"><i
+											class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+								</ul>
+
+							</div>
+						</div>
+						<!-- Navigation / End -->
+
+					</div>
+				</div>
+			</div>
+			<!-- Dashboard Sidebar / End -->
+
+
+			<!-- Dashboard Content
+	================================================== -->
+			<div class="dashboard-content-container" data-simplebar>
+				<div class="dashboard-content-inner">
+
+					<!-- Dashboard Headline -->
+					<div class="dashboard-headline">
+						<h3>Post a Job</h3>
+
+						<!-- Breadcrumbs -->
+
+					</div>
+
+					<!-- Row -->
+					<div class="row">
+
+						<form id="jobDescription" th:action="@{/client/saveJdGoToManage}"
+							th:method="post" th:object="${jobDescription}">
+
+							<!-- Dashboard Box -->
+							<div class="col-xl-12">
+								<div class="dashboard-box margin-top-0">
+
+									<!-- Headline -->
+									<div class="headline">
+										<h3>
+											<i class="icon-feather-folder-plus"></i> Job Submission Form
+										</h3>
+									</div>
+
+									<div class="content with-padding padding-bottom-10">
+										<div class="row">
+
+
+											<input type="hidden" id="jdId" name="jdId" th:value="*{jdId}"></input>
+											<div class="form-group" th:object="${objClient}">
+												<input type="hidden" class="input-text-with-boarder"
+													id="client" name="client" th:value="${objClient.clientId}"
+													required="hidden" th:minlength="1" th:maxlength="100">
+											</div>
+
+											<div class="col-xl-4">
+												<div class="submit-field">
+													<h5>Qualification</h5>
+													<input type="text" class="with-border" id="qualification"
+														name="qualification" pattern="[A-Za-z\s\.]{1,40}"
+														title="it should be in A-Za-z format"
+														placeholder="Highest Qualification"
+														th:value="*{qualification}" required="required"
+														th:minlength="1" th:maxlength="100">
+												</div>
+											</div>
+
+
+
+											<input type="hidden" class="input-text-with-boarder"
+												id="clientId" name="clientId"
+												th:value="${objClient.clientId}" required="hidden"
+												th:minlength="1" th:maxlength="100">
+
+											<div class="col-xl-4">
+												<div for="validationCustomtitle" class="submit-field">
+													<h5>Department</h5>
+													<div class="input-with-icon">
+														<select class="form-control" id="department"
+															name="department" th:field="*{department}"
+															required="required" onchange="getPositions(this.value);">
+															<option value="">Select Department</option>
+															<option th:each="objDepartment:${departmentList}"
+																th:value="${objDepartment.deptName}"
+																th:text="${objDepartment.deptName}" />
+															</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-xl-4">
+												<div for="validationCustomtitle" class="submit-field">
+													<h5>Position</h5>
+													<div class="input-with-icon">
+														<select class="form-control" id="position" name="position"
+															th:field="*{position}" required="required">
+															<option value="">Select Position</option>
+															<option th:each="objPosition:${positionList}"
+																th:value="${objPosition.postName}"
+																th:text="${objPosition.postName}" />
+															</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-xl-4">
+												<div class="submit-field">
+													<h5>Location</h5>
+													<div class="input-with-icon">
+														<div id="autocomplete-container">
+															<input type="text" class="with-border"
+																id="autocomplete-input" name="location"
+																pattern="[A-Za-z\s\.]{1,40}"
+																title="it should be in A-Za-z format"
+																th:value="*{location}" required="required"
+																th:minlength="1" th:maxlength="100"
+																placeholder="eg: Hyderabad, Chennai, Delhi etc">
+														</div>
+														<i class="icon-material-outline-location-on"></i>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-xl-4">
+												<div class="submit-field">
+													<h5>Shifts</h5>
+													<div class="input-with-icon">
+														<select class="form-control" id="shifts" name="shifts"
+															th:field="*{shifts}" required="required">
+															<option value="none" selected>Shifts</option>
+															<option value="day">Day</option>
+															<option value="night">Night</option>
+															<option value="day/night">Day/Night</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											
+
+											<div class="col-xl-4">
+												<div class="submit-field">
+													<h5>Skills</h5>
+													<div class="keywords-container">
+														<div class="keyword-input-container">
+															<input type="text" pattern="[A-Za-z\s\,]{1,100}"
+																title="it should be in A-Za-z format"
+																class="with-border" id="skillsRequired" name="skills"
+																th:value="*{skills}" required="required"
+																th:minlength="1" th:maxlength="100"
+																placeholder="e.g. Java, Python, Spring Boot etc"><!--  placeholder="e.g. Java, Python, Spring Boot etc"> -->
+														</div>
+													</div>
+												</div>
+											</div>
+
+									<div class="col-xl-2">
+												<div class="submit-field">
+													<h5>Experience</h5>
+													<div class="input-with-icon">
+														<input type="text" class="with-border" id="exp" name="exp"
+															pattern="^(?=.*\d)\d{0,2}(?:\.\d{0,2})?$"
+															title="This must be a number with up to 2 decimal places "
+															th:value="*{exp}" required="required" th:minlength="1"
+															th:maxlength="4"> <i class="currency">Years</i>
+													</div>
+												</div>
+											</div>
+
+
+											<div class="col-xl-3">
+												<div class="submit-field">
+													<h5>Salary</h5>
+													<div class="input-with-icon">
+														<input type="text" class="with-border" id="lpa" name="lpa"
+															pattern="^(?=.*\d)\d{0,2}(?:\.\d{0,2})?$"
+															title="This must be a number with up to 2 decimal places "
+															th:value="*{lpa}" required="required" th:minlength="1"
+															th:maxlength="5"> <i class="currency">LPA</i>
+													</div>
+												</div>
+											</div>
+
+
+											
+
+											<div class="col-xl-3">
+												<div class="submit-field">
+													<h5>Process</h5>
+													<div class="input-with-icon">
+														<select class="form-control" id="process" name="process"
+															th:field="*{process}" required="required">
+															<option value="none" selected>Process</option>
+															<option value="online">Online</option>
+															<option value="offline">Offline</option>
+															<option value="online/offline">Online/Offline</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-xl-2">
+												<div class="submit-field">
+													<h5>Year Of Pass</h5>
+													<div class="input-with-icon">
+														<input type="text" class="with-border" id="yearOfPassing"
+															name="yearOfPassing" pattern="[2]{1}\d{3}"
+															title="it should be start with 2 total no of digits should be 4 only"
+															th:value="*{yearOfPassing}" required="required"
+															th:minlength="1" th:maxlength="4"> <i
+															class="currency">Year Of Pass</i>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-xl-2">
+												<div class="submit-field">
+													<h5>Vacancies</h5>
+													<div class="input-with-icon">
+														<input type="text" class="with-border" id="vacancies"
+															name="vacancies" pattern="[0-9]\d{1,4}"
+															title="it should be start with 2 total no of digits should be 4 only"
+															th:value="*{vacancies}" required="required"
+															th:minlength="1" th:maxlength="4"> <i
+															class="currency">no of vacancies</i>
+													</div>
+												</div>
+											</div>
+											
+										
+											
+											<div class="col-xl-6">
+												<div class="submit-field">
+													<h5>Interview Phases</h5>
+													<input type="text" class="with-border" id="interviewPhase"
+														name="interviewPhase" pattern="[1-9A-Za-z\s\.\,]{1,100}"
+														title="it should be in A-Za-z format"
+														placeholder="eg: technical1,technicl 2, HR"
+														th:value="*{interviewPhase}" required="required"
+														th:minlength="1" th:maxlength="100">
+												</div>
+											</div>
+											
+											
+
+
+											<!-- <div class="col-xl-12">
+<div  class="with-border">									
+<td> <strong>Java: </strong><small><input class="col-xl-1" type="checkbox" id="check1" name="pl" th:value="Java" th:field="*{skills}"></small> </td>  
+<td> <strong>PHP: </strong> <input class="col-xl-1" type="checkbox" id="check2" name="pl" th:value="PHP" th:field="*{skills}"> </td>   
+<tr>  
+<td> Angular: <input class="col-xl-1" type="checkbox" id="check3" name="pl" value="Angular" th:field="*{skills}"> </td>  
+<td> CSS: <input class="col-xl-1" type="checkbox" id="check4" name="pl" th:value="CSS" th:field="*{skills}"> </td>  
+</tr> <tr>  
+<td> Python: <input class="col-xl-1" type="checkbox" id="check5" name="pl" th:value="Python" th:field="*{skills}"> </td>  
+<td> Android: <input class="col-xl-1" type="checkbox" id="check6" name="pl" th:value="Android" th:field="*{skills}"> </td> <br> <br>  
+<button id="btn">Submit</button> <br>  
+</tr>
+</div></div>
+<h4 style="color:green" id="result"></h4>
+<script>  
+document.getElementById('btn').onclick = function() {  
+  var markedCheckbox = document.getElementsByName('pl');  
+  for (var checkbox of markedCheckbox) {  
+    if (checkbox.checked)  
+      document.body.append(checkbox.value + ' ');  
+  }  
+}  
+</script>  -->
+
+											<div class="col-xl-12">
+												<div class="submit-field">
+													<h5>Job Description</h5>
+													<textarea cols="30" rows="5" class="with-border" id="comments" placeholder="A small Description about JD"
+														name="comments" th:utext="${jobDescription.comments}"></textarea>
+
+												</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- <div class="col-xl-12">
+								<i
+									class="icon-feather-plus"></i> Post a Job
+							</div> -->
+							<div class="form-group">
+		<button type="submit" class="button ripple-effect big margin-top-30" th:text="save"></button>
+	</div>
+						</form>
+					</div>
+					<!-- Row / End -->
+
+					<!-- Footer -->
+					<div class="dashboard-footer-spacer"></div>
+					<div class="small-footer margin-top-15">
+						<div class="small-footer-copyrights">
+							© 2022 <strong>360 Resourcing</strong>. All Rights Reserved.
+						</div>
+						<!-- <ul class="footer-social-links">
+							<li><a href="#" title="Facebook" data-tippy-placement="top">
+									<i class="icon-brand-facebook-f"></i>
+							</a></li>
+							<li><a href="#" title="Twitter" data-tippy-placement="top">
+									<i class="icon-brand-twitter"></i>
+							</a></li>
+							<li><a href="#" title="Google Plus"
+								data-tippy-placement="top"> <i
+									class="icon-brand-google-plus-g"></i>
+							</a></li>
+							<li><a href="#" title="LinkedIn" data-tippy-placement="top">
+									<i class="icon-brand-linkedin-in"></i>
+							</a></li>
+						</ul> -->
+						<div class="clearfix"></div>
+					</div>
+					<!-- Footer / End -->
+
+				</div>
+			</div>
+			<!-- Dashboard Content / End -->
+
+		</div>
+		<!-- Dashboard Container / End -->
+
+	</div>
+	<!-- Wrapper / End -->
+
+
+	<!-- Scripts
+================================================== -->
+	<script src="../../js/jquery-3.6.0.min.js"></script>
+	<script src="../../js/jquery-migrate-3.3.2.min.js"></script>
+	<script src="../../js/mmenu.min.js"></script>
+	<script src="../../js/tippy.all.min.js"></script>
+	<script src="../../js/simplebar.min.js"></script>
+	<script src="../../js/bootstrap-slider.min.js"></script>
+	<script src="../../js/bootstrap-select.min.js"></script>
+	<script src="../../js/snackbar.js"></script>
+	<script src="../../js/clipboard.min.js"></script>
+	<script src="../../js/counterup.min.js"></script>
+	<script src="../../js/magnific-popup.min.js"></script>
+	<script src="../../js/slick.min.js"></script>
+	<script src="../../js/custom.js"></script>
+
+	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+	<script>
+// Snackbar for user status switcher
+$('#snackbar-user-status label').click(function() { 
+	Snackbar.show({
+		text: 'Your status has been changed!',
+		pos: 'bottom-center',
+		showAction: false,
+		actionText: "Dismiss",
+		duration: 3000,
+		textColor: '#fff',
+		backgroundColor: '#383838'
+	}); 
+}); 
+</script>
+
+	<!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
+	<script src="js/chart.min.js"></script>
+	<script>
+	Chart.defaults.global.defaultFontFamily = "Nunito";
+	Chart.defaults.global.defaultFontColor = '#888';
+	Chart.defaults.global.defaultFontSize = '14';
+
+	var ctx = document.getElementById('chart').getContext('2d');
+
+	var chart = new Chart(ctx, {
+		type: 'line',
+
+		// The data for our dataset
+		data: {
+			labels: ["January", "February", "March", "April", "May", "June"],
+			// Information about the dataset
+	   		datasets: [{
+				label: "Views",
+				backgroundColor: 'rgba(42,65,232,0.08)',
+				borderColor: '#2a41e8',
+				borderWidth: "3",
+				data: [196,132,215,362,210,252],
+				pointRadius: 5,
+				pointHoverRadius:5,
+				pointHitRadius: 10,
+				pointBackgroundColor: "#fff",
+				pointHoverBackgroundColor: "#fff",
+				pointBorderWidth: "2",
+			}]
+		},
+
+		// Configuration options
+		options: {
+
+		    layout: {
+		      padding: 10,
+		  	},
+
+			legend: { display: false },
+			title:  { display: false },
+
+			scales: {
+				yAxes: [{
+					scaleLabel: {
+						display: false
+					},
+					gridLines: {
+						 borderDash: [6, 10],
+						 color: "#d8d8d8",
+						 lineWidth: 1,
+	            	},
+				}],
+				xAxes: [{
+					scaleLabel: { display: false },  
+					gridLines:  { display: false },
+				}],
+			},
+
+		    tooltips: {
+		      backgroundColor: '#333',
+		      titleFontSize: 13,
+		      titleFontColor: '#fff',
+		      bodyFontColor: '#fff',
+		      bodyFontSize: 13,
+		      displayColors: false,
+		      xPadding: 10,
+		      yPadding: 10,
+		      intersect: false
+		    }
+		},
+
+
+});
+
+</script>
+
+</body>
+</html>

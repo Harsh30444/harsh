@@ -1,0 +1,443 @@
+<!-- ============================= -->
+
+<!-- 	@author: Praveen Gudimalla -->
+
+<!--  ==============================-->
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../../../css/style.css">
+<link rel="stylesheet" href="../../../css/colors/blue.css">
+
+</head>
+<body>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header Container
+================================================== -->
+		<header id="header-container" class="fullwidth not-sticky">
+
+			<!-- Header -->
+			<div id="header">
+				<div class="container">
+
+					<!-- Left Side Content -->
+					<div class="left-side">
+
+						<!-- Logo -->
+						<div id="logo">
+							<a href="#"><img src="../../images/360Logo.jpg" alt=""></a>
+						</div>
+
+						<!-- Main Navigation -->
+						<nav id="navigation">
+							<ul id="responsive">
+
+								<!-- <li><a href="#">Find Work</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/resourcing}">Browse Jobs</a></li>
+									</ul></li>
+									
+								<li><a href="#">Education</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/education/educationList/{candidateId}(candidateId=${session.candidateObj.candidateId})}">Education List</a></li>
+									</ul></li>
+									
+								<li><a href="#">Employment</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/employment/employmentList/{candidateId}(candidateId=${session.candidateObj.candidateId})}">Employment List</a></li>
+									</ul></li>
+									
+								<li><a href="#">Skills</a>
+									<ul class="dropdown-nav"><li><a
+											th:href="@{/csa/skillList/{candidateId}(candidateId=${session.candidateObj.candidateId})}">Skills List</a></li>
+											<li><a
+											th:href="@{/csa/addSkills/{id}(id=${session.candidateObj.candidateId})}">add Skills</a></li>
+									</ul></li> -->
+
+
+
+
+								<li><a href="#">Next</a>
+									<ul class="dropdown-nav">
+										<li><span th:if="${session.candidateObj == NULL}"><a
+												th:href="@{/candidate/logout}">Logout</a></span> <span
+											th:if="${session.candidateObj != NULL}"><a
+												th:href="@{/candidate/dashboard/{id}(id=${session.candidateObj.candidateId})}">Dashboard</a></span>
+										</li>
+									</ul></li>
+
+
+								<li><a href="#">Back</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/resourcing}">Job Search</a></li>
+									</ul></li>
+						</nav>
+						<div class="clearfix"></div>
+						<!-- Main Navigation / End -->
+
+					</div>
+					<!-- Left Side Content / End -->
+
+
+					<!-- Right Side Content / End -->
+					<div class="right-side">
+
+						<!--  User Notifications -->
+
+						<!--  User Notifications / End -->
+
+						<!-- User Menu -->
+						<div class="header-widget">
+
+							<!-- Messages -->
+							<div class="header-notifications user-menu">
+								<div class="header-notifications-trigger">
+									<a href="#"><div class="user-avatar status-online">
+											<img src="../../images/user-avatar-small-01.jpg" alt="">
+										</div></a>
+								</div>
+
+
+								<div class="header-notifications-dropdown"
+									th:if=${session.candidateObj==null}></div>
+
+								<!-- Dropdown -->
+								<div class="header-notifications-dropdown"
+									th:if=${session.candidateObj!=null}>
+
+									<!-- User Status -->
+									<div class="user-status">
+
+										<!-- User Name / Avatar -->
+										<div class="user-details">
+											<div class="user-avatar status-online">
+												<img src="../../images/user-avatar-small-01.jpg" alt="">
+											</div>
+											<span th:if="${session.candidateObj==null}"></span> <span
+												th:if="${session.candidateObj!=null}"><div
+													class="user-name">
+													<h3 style="color: maroon"
+														th:text="${session.candidateObj.firstName}"></h3>
+													<span>Candidate</span>
+												</div></span>
+										</div>
+
+
+									</div>
+
+									<ul class="user-menu-small-nav">
+										<li></li>
+										<li><a
+											th:href="@{/candidate/dashboard/{id}(id=${session.candidateObj.candidateId})}"><i
+												class="icon-material-outline-settings"></i>Dashboard</a></li>
+
+										<li><a th:href="@{/candidate/logout}"><i
+												class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+									</ul>
+
+								</div>
+
+							</div>
+
+						</div>
+						<!-- User Menu / End -->
+
+						<!-- Mobile Navigation Button -->
+						<span class="mmenu-trigger">
+							<button class="hamburger hamburger--collapse" type="button">
+								<span class="hamburger-box"> <span
+									class="hamburger-inner"></span>
+								</span>
+							</button>
+						</span>
+
+					</div>
+					<!-- Right Side Content / End -->
+
+				</div>
+			</div>
+			<!-- Header / End -->
+
+		</header>
+		<div class="clearfix"></div>
+		<!-- Header Container / End -->
+
+
+		<!-- Titlebar
+================================================== -->
+		<div class="single-page-header"
+			data-background-image="images/single-job.jpg" th:each="jd : ${objJd}">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+
+
+
+						<div class="single-page-header-inner">
+							<div class="left-side">
+								<!-- <div class="header-image"><a href="single-company-profile.html"><img src="images/company-logo-03a.png" alt=""></a></div> -->
+								<div class="header-details">
+									<h1 th:text="${jd.position}" style="color: blue;"></h1>
+									<!-- Spacer -->
+									<div class="margin-top-20"></div>
+									<!-- Spacer / End-->
+									<!-- <h5>About the Employer</h5> -->
+									<ul>
+										<li><a href="#"><i
+												class="icon-material-outline-location-on"></i> Location: <span
+												class="dashboard-status-button green"
+												style="display: inline-block;" th:text="${jd.location}"></span></a></li>
+									</ul>
+									<ul>
+										<li><a href="#"><i
+												class="icon-line-awesome-institution"></i> Company:<span
+												class="dashboard-status-button green"
+												style="display: inline-block;"
+												th:text="${jd.client.clientCompany}"></span></a></li>
+									</ul>
+
+									<ul>
+										<li><a href="#"><i class="icon-feather-user"></i>
+												Total Vacancies <span class="dashboard-status-button green"
+												style="display: inline-block;" th:text="${jd.vacancies}"></span></a></li>
+									</ul>
+									<ul>
+										<li><a href="#"><i class="icon-feather-user-check"></i>
+												No of Vacancies filled:<span
+												class="dashboard-status-button green"
+												style="display: inline-block;" th:text="${jd.filled}"></span></a></li>
+									</ul>
+									<ul>
+										<li><a href="#"><i class="icon-line-awesome-pencil"></i>
+												Skills Required:<span class="dashboard-status-button green"
+												style="display: inline-block;" th:text="${jd.skills}"></span></a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="right-side">
+								<div class="salary-box">
+									<div class="salary-type">Salary in Lpa</div>
+									<div class="salary-amount">
+										INR<span th:text="${jd.lpa}"></span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Page Content
+================================================== -->
+		<div class="container" th:each="jd : ${objJd}">
+			<div class="row">
+
+				<!-- Content -->
+				<div class="col-xl-8 col-lg-8 content-right-offset">
+
+					<div class="single-page-section">
+						<h3 class="margin-bottom-25">Job Description</h3>
+						<p>
+							<span th:text="${jd.comments}">
+						</p>
+
+					</div>
+
+					<!-- <div class="single-page-section">
+				<h3 class="margin-bottom-30">Location</h3>
+				<div id="single-job-map-container">
+					<div id="singleListingMap" data-latitude="51.507717" data-longitude="-0.131095" data-map-icon="im im-icon-Hamburger"></div>
+					<a href="#" id="streetView">Street View</a>
+				</div>
+			</div> -->
+
+
+				</div>
+
+
+
+
+				<!-- Sidebar -->
+				<div th:each="jd : ${objJd}" class="col-xl-4 col-lg-4">
+					<div class="sidebar-container">
+						<div>
+							<h3>
+								<b><span style="color: red" th:text="${message}"></span></b>
+							</h3>
+						</div>
+						<div>
+							<span th:if="${session.candidateObj!=null}">
+								<button>
+									<a th:href="@{/addCJA/{id}(id=${jd.jdId})}"><h1
+											style="color: blue">Apply Now</h1></a>
+								</button>
+							</span> <span th:if="${session.candidateObj==null}">
+								<button>
+									<a th:href="@{/candidate/login}"><h1 style="color: red">Please
+											Login to apply!!</h1></a>
+								</button>
+							</span>
+						</div>
+						<!-- 					
+																			
+					
+										
+				<!-- Sidebar Widget -->
+
+
+
+						<div class="sidebar-widget">
+							<div class="job-overview">
+								<div class="job-overview-headline">Job Summary</div>
+								<div class="job-overview-inner">
+									<ul>
+										<li><i class="icon-line-awesome-graduation-cap"></i> <span>Year
+												Of Pass </span>
+											<h5>
+												<span th:text="${jd.yearOfPassing}"></span>
+											</h5></li>
+
+										<li><i class="icon-material-outline-location-on"></i> <span>Experience
+												(Yrs)</span>
+											<h5>
+												<span th:text="${jd.exp}">yrs</span>
+											</h5></li>
+
+										<li><i class="icon-material-outline-business-center"></i>
+											<span>Job Type</span>
+											<h5>
+												<span th:text="${jd.shifts}"></span>
+											</h5></li>
+										<li><i class="icon-line-awesome-video-camera"></i> <span>Interview
+												process</span>
+											<h5>
+												<span th:text="${jd.process}"></span>
+											</h5></li>
+
+										<li><i class="icon-material-outline-access-time"></i> <span>Date
+												Posted</span>
+											<h5>
+												<span th:text="${jd.createdDate}"></span>
+											</h5></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+
+
+						<!-- Sidebar Widget -->
+
+
+					</div>
+					
+					
+					
+					
+				</div>
+
+			</div>
+			
+			
+			<div class="dashboard-footer-spacer"></div>
+		<div class="small-footer margin-top-30">
+			<div class="small-footer-copyrights">
+				© 2022 <strong>360 Resourcing</strong>. All Rights Reserved.
+			</div>
+
+			<div class="clearfix"></div>
+		</div>
+			
+		</div>
+
+
+		<!-- Footer
+================================================== -->
+		<!-- <div class="dashboard-footer-spacer"></div>
+		<div class="small-footer margin-top-30">
+			<div class="small-footer-copyrights">
+				© 2022 <strong>360 Resourcing</strong>. All Rights Reserved.
+			</div>
+
+			<div class="clearfix"></div>
+		</div> -->
+
+		<!-- Footer / End -->
+
+	</div>
+	<!-- Wrapper / End -->
+
+
+	<!-- Apply for a job popup
+================================================== -->
+
+	<!-- Apply for a job popup / End -->
+
+
+	<!-- Scripts
+================================================== -->
+	<script src="../../js/jquery-3.6.0.min.js"></script>
+	<script src="../../js/jquery-migrate-3.3.2.min.js"></script>
+	<script src="../../js/mmenu.min.js"></script>
+	<script src="../../js/tippy.all.min.js"></script>
+	<script src="../../js/simplebar.min.js"></script>
+	<script src="../../js/bootstrap-slider.min.js"></script>
+	<script src="../../js/bootstrap-select.min.js"></script>
+	<script src="../../js/snackbar.js"></script>
+	<script src="../../js/clipboard.min.js"></script>
+	<script src="../../js/counterup.min.js"></script>
+	<script src="../../js/magnific-popup.min.js"></script>
+	<script src="../../js/slick.min.js"></script>
+	<script src="../../js/custom.js"></script>
+
+	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+	<script>
+		// Snackbar for user status switcher
+		$('#snackbar-user-status label').click(function() {
+			Snackbar.show({
+				text : 'Your status has been changed!',
+				pos : 'bottom-center',
+				showAction : false,
+				actionText : "Dismiss",
+				duration : 3000,
+				textColor : '#fff',
+				backgroundColor : '#383838'
+			});
+		});
+
+		// Snackbar for copy to clipboard button
+		$('.copy-url-button').click(function() {
+			Snackbar.show({
+				text : 'Copied to clipboard!',
+			});
+		});
+	</script>
+
+	<!-- Google API & Maps -->
+	<!-- Geting an API Key: https://developers.google.com/maps/documentation/javascript/get-api-key -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
+	<script src="../../js/infobox.min.js"></script>
+	<script src="../../js/markerclusterer.js"></script>
+	<script src="../../js/maps.js"></script>
+
+</body>
+</html>

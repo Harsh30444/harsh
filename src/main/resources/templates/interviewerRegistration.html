@@ -1,0 +1,263 @@
+<!-- *author: HarshKashyap -->
+
+
+<!doctype html>
+<html lang="en" xmlns:th="https://thymleaf.org">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360 Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/colors/blue.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+	crossorigin="anonymous">
+
+<!-- eye icon visibility START================= -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<style>
+form i {
+	margin-left: -30px;
+	cursor: pointer;
+}
+</style>
+<!-- eye icon visibility END================= -->
+
+
+</head>
+<body onload="GenerateCaptcha();">
+
+	</header>
+	<div class="clearfix"></div>
+	<!-- Header Container / End -->
+
+	<!-- Titlebar
+================================================== -->
+	<div id="titlebar" class="gradient">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+
+					<nav id="breadcrumbs" class="dark">
+						<ul>
+							<li><a th:href="@{../../resourcing}">Home</a></li>
+					</ul>
+					</nav>
+
+					<!-- Breadcrumbs -->
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- Page Content
+================================================== -->
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-5 width=130 offset-xl-3">
+
+				<div class="login-register-page">
+					<!-- Welcome Text -->
+					<div class="welcome-text">
+						<h3 style="font-size: 26px;">Let's create your account!</h3>
+						<span>Already have an account? <a th:href="@{/login}">Log
+								In!</a></span>
+					</div>
+
+
+					<div>
+						<h3>
+							<b><span style="color: red" th:text="${message}"></span></b>
+						</h3>
+					</div>
+
+					<!-- Form -->
+		<form method="get" id="login-form"
+							th:action="@{saveInterviewer}"
+							th:object="${newInterviewerDetails}">
+
+							<div class="input-with-icon-left">
+								<i class="bi bi-person"></i><input
+									type="text" class="input-text with-border"
+									name="interviewerName" id="interviewerName"
+									th:field="*{interviewerName}" placeholder="Name" required
+									pattern="[a-zA-Z][a-zA-Z\s]*"
+									title="it should be in A-Za-z format" />
+							</div>
+
+							<div class="input-with-icon-left">
+								<i class="icon-material-baseline-mail-outline"></i> <input
+									type="email" class="input-text with-border"
+									name="interviewerMail" id="interviewerMail"
+									th:value="${interviewerMail}" placeholder="Email Address"
+									pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+									title="form with an email field that that must be in the following order:
+characters@characters.domain (characters followed by an @ sign, followed by more characters,
+and then (dot) like . After the (dot) like. sign, add at least 2 letters from a to z:"
+									required />
+							</div>
+
+							<div>
+								<h3>
+									<b><span style="color: red" th:text="${message}"></span></b>
+								</h3>
+							</div>
+
+							<div class="input-with-icon-left">
+								<i class="bi bi-eye-slash" id="togglePassword"></i> <input
+									type="password" class="bi bi-eye-slash" name="password"
+									id="password" th:value="${password}" placeholder="Password"
+									pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+									title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+									required="required" th:minlength="1" th:maxlength="100">
+							</div>
+							<label>Enter Captcha:</label>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<input type="text" class="form-control" readonly id="captcha"
+										name="captcha" th:value=${captcha}>
+								</div>
+								<div class="form-group col-md-6">
+									<input type="text" class="form-control" id="userCaptcha"
+										name="userCaptcha" th:value=${userCaptcha} required />
+								</div>
+							</div>
+
+
+
+							<h6>
+								Captcha not visible <img src="images/refresh.png"
+									width="40px" onclick="cap()">
+							</h6>
+
+
+
+							<!-- Button -->
+							<div class="form-group">
+								<button class="btn btn-lg btn-success btn-block">Register</button>
+							</div>
+
+
+
+						</form>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Spacer -->
+	<div class="margin-top-70"></div>
+	<!-- Spacer / End-->
+
+	<!-- Footer
+================================================== -->
+	<div id="footer">
+
+		<!-- Footer Top Section -->
+		<div class="footer-top-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-12">
+
+						<!-- Footer Rows Container -->
+						<div class="footer-rows-container">
+
+							<!-- Left Side -->
+							<div class="footer-rows-left">
+								<div class="footer-row">
+									<div class="footer-row-inner footer-logo">
+										<img src="/images/360Logo.jpg" alt="">
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Footer Copyrights -->
+			<div class="footer-bottom-section">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12">
+							© 2022 <strong>360Resourcing</strong>. All Rights Reserved.
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Footer Copyrights / End -->
+
+		</div>
+		<!-- Footer / End -->
+
+	</div>
+	<!-- Scripts
+================================================== -->
+	<script src="../js/jquery-3.6.0.min.js"></script>
+	<script src="../js/jquery-migrate-3.3.2.min.js"></script>
+	<script src="../js/mmenu.min.js"></script>
+	<script src="../js/tippy.all.min.js"></script>
+	<script src="../js/simplebar.min.js"></script>
+	<script src="../js/bootstrap-slider.min.js"></script>
+	<script src="../js/bootstrap-select.min.js"></script>
+	<script src="../js/snackbar.js"></script>
+	<script src="../js/clipboard.min.js"></script>
+	<script src="../js/counterup.min.js"></script>
+	<script src="../js/magnific-popup.min.js"></script>
+	<script src="../js/slick.min.js"></script>
+	<script src="../js/custom.js"></script>
+	<script src="../js/captcha.js"></script>
+	<script src="../js/show_password.js"></script>
+	<script src="../js/strong_password.js"></script>
+
+
+	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+	<script>
+		// Snackbar for user status switcher
+		$('#snackbar-user-status label').click(function() {
+			Snackbar.show({
+				text : 'Your status has been changed!',
+				pos : 'bottom-center',
+				showAction : false,
+				actionText : "Dismiss",
+				duration : 3000,
+				textColor : '#fff',
+				backgroundColor : '#383838'
+			});
+		});
+	</script>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+	crossorigin="anonymous"></script>
+</html>

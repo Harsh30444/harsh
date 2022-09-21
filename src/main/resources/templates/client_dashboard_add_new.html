@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/colors/blue.css">
+
+</head>
+<body class="gray">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header Container
+================================================== -->
+		<header id="header-container"
+			class="fullwidth dashboard-header not-sticky">
+
+			<!-- Header -->
+			<div id="header">
+				<div class="container">
+
+					<!-- Left Side Content -->
+					<div class="left-side">
+
+						<!-- Logo -->
+						<div id="logo">
+							<a href="#"><img src="../../images/360Logo.jpg" alt=""></a>
+						</div>
+
+						<!-- Main Navigation -->
+						<nav id="navigation">
+							<ul id="responsive">
+
+								<li><a href="#" class="current">Dashboard</a>
+									<ul class="dropdown-nav">
+										<li><a th:object=${editClientDetails}
+											th:href="@{/client/GoToDashboard/{id}(id=${session.clientObj.clientId})}"><i
+												class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+									</ul></li>
+
+								<li><a href="#" class="current">Job Description</a>
+									<ul class="dropdown-nav">
+										<li><a 
+											th:href="@{/client/dashboard-post-a-job/{id}(id=${session.clientObj.clientId})}">Post
+												A Job</a></li>
+										<li><a th:object="${jdList}"
+											th:href="@{/client/jdList/{id}(id=${session.clientObj.clientId})}">Job
+												List</a></li>
+									</ul></li>
+
+								<li><a href="#" class="current">Settings</a>
+									<ul class="dropdown-nav">
+										<li><a th:object=${editClientDetails}
+											th:href="@{/client/updateClientDetails/{id}(id=${session.clientObj.clientId})}"><i
+												class="icon-material-outline-settings"></i> Settings</a></li>
+									</ul></li>
+
+								<li><a href="#" class="current">My Employees</a>
+									<ul class="dropdown-nav">
+										<li><a th:object="${editClientDetails}"
+											th:href="@{/eca/ecaListForSingleClient/{id}(id=${session.clientObj.clientId})}">My
+												Employees</a></li>
+									</ul></li>
+
+								<li><a href="#" class="current">Department</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/dept/addDept}">AddDepartment</a></li>
+										<li><a th:href="@{/dept/deptList}">Department List</a></li>
+									</ul></li>
+
+							</ul>
+						</nav>
+						<div class="clearfix"></div>
+
+
+						<!-- User Profile /End -->
+					</div>
+					<!-- Left Side Content / End -->
+
+
+
+
+					<!-- Right Side Content / End -->
+					<div class="right-side">
+
+
+
+						<!-- User Menu -->
+						<div class="header-widget">
+
+							<!-- Messages -->
+							<div class="header-notifications user-menu">
+								<div class="header-notifications-trigger">
+									<a href="#"><div class="user-avatar status-online">
+											<img src="../../images/user-avatar-small-01.jpg" alt="">
+										</div></a>
+								</div>
+
+								<!-- Dropdown -->
+								<div class="header-notifications-dropdown">
+
+									<!-- User Status -->
+									<div class="user-status">
+
+										<!-- User Name / Avatar -->
+										<div class="user-details">
+											<div class="user-avatar status-online">
+												<img src="../../images/user-avatar-small-01.jpg" alt="">
+											</div>
+											<div class="user-name">
+												<h3 style="color: green"
+													th:text="${session.clientObj.clientName}"></h3>
+												<span>Client</span>
+											</div>
+										</div>
+
+										
+										 
+											
+									</div>
+
+									<ul class="user-menu-small-nav">
+										<li><a th:object=${editClientDetails}
+											th:href="@{/client/GoToDashboard/{id}(id=${session.clientObj.clientId})}"></i>
+												Dashboard</a></li>
+										<li><a th:object=${editClientDetails}
+											th:href="@{/client/updateClientDetails/{id}(id=${session.clientObj.clientId})}"></i>
+												Settings</a></li>
+										<li><a th:href="@{/resourcing}"><i
+												class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+						<!-- User Menu / End -->
+
+						<!-- Mobile Navigation Button -->
+						<span class="mmenu-trigger">
+							<button class="hamburger hamburger--collapse" type="button">
+								<span class="hamburger-box"> <span
+									class="hamburger-inner"></span>
+								</span>
+							</button>
+						</span>
+
+					</div>
+					<!-- Right Side Content / End -->
+
+				</div>
+			</div>
+			<!-- Header / End -->
+
+		</header>
+		<div class="clearfix"></div>
+		<!-- Header Container / End -->
+
+
+		<!-- Dashboard Container -->
+		<div class="dashboard-container">
+
+			<!-- Dashboard Sidebar
+	================================================== -->
+			<div class="dashboard-sidebar">
+				<div class="dashboard-sidebar-inner" data-simplebar>
+					<div class="dashboard-nav-container">
+
+						<!-- Responsive Navigation Trigger -->
+						<a href="#" class="dashboard-responsive-nav-trigger"> <span
+							class="hamburger hamburger--collapse"> <span
+								class="hamburger-box"> <span class="hamburger-inner"></span>
+							</span>
+						</span> <span class="trigger-title">Dashboard Navigation</span>
+						</a>
+
+						<!-- Navigation -->
+						<div class="dashboard-nav">
+							<div class="dashboard-nav-inner">
+
+
+								<ul data-submenu-title="Organize and Manage">
+									<li><a href="#"><i
+											class="icon-material-outline-business-center"></i> Jobs</a>
+										<ul>
+											<li><a th:object="${jdList}"
+												th:href="@{../../client/jdList/{id}(id=${session.clientObj.clientId})}">Manage
+													Jobs <span class="nav-tag">3</span>
+											</a></li>
+											<li><a th:object="${editClientDetails}"
+												th:href="@{../../client/dashboard-post-a-job/{id}(id=${session.clientObj.clientId})}">Post
+													a Job</a></li>
+										</ul></li>
+
+								</ul>
+
+								<ul data-submenu-title="Account">
+									<li><a th:object=${editClientDetails}
+										th:href="@{/client/updateClientDetails/{id}(id=${session.clientObj.clientId})}"><i
+											class="icon-material-outline-settings"></i> Settings</a></li>
+									<li><a th:href="@{/resourcing}"><i
+											class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+								</ul>
+
+							</div>
+						</div>
+						<!-- Navigation / End -->
+
+					</div>
+				</div>
+			</div>
+			<!-- Dashboard Sidebar / End -->
+
+
+	<!-- Dashboard Content
+	================================================== -->
+	<div class="dashboard-content-container" data-simplebar>
+				<div class="dashboard-content-inner">
+
+					<!-- Dashboard Headline -->
+					<div class="dashboard-headline">
+						<h3 style="color: green" th:text="${session.clientObj.clientName}"></h3>
+						
+
+						<!-- Breadcrumbs -->
+						<div>
+							<nav id="breadcrumbs" class="dark">
+								<ul>
+									<li><a th:href="@{/client/reg}">Home</a></li>
+									<li><a th:href="@{/resourcing}">Logout</a></li>
+									<li><a
+										th:href="@{/client/updateClientDetails/{id}(id=${session.clientObj.clientId})}">Settings</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+					
+
+							<!-- Headline -->
+							<!-- <div class="headline">
+								<h2>All Positions And Departments</h2>
+							</div>
+							<div align="center">
+								<div class="dashboard-headline">
+									<a th:href="@{/dept/addDept}"
+										class="btn btn-primary btn-sm mb-6">Add A New Department</a>
+								</div>
+								
+							</div> -->
+
+
+
+
+							<div class="container-sm bg-info">
+								<div class="row row-cols-sm-auto">
+
+									<div class="col-xl-4 col-md-4">
+
+										<div class="section-headline margin-bottom-30">
+
+											<div class="dashboard-headline">
+									<a th:href="@{/dept/addDept}"
+										class="btn btn-primary btn-sm mb-6">Add A New Department</a>
+								</div>
+											<div></div>
+										</div>
+									
+										<table class="basic-table" id="example">
+										<thead>
+											<tr>
+												<th>Department</th>
+
+												<th>Position</th>
+
+												<th>Add Position</th>
+
+												<!-- <th>Status</th> -->
+
+												<!-- <th>Action</th> -->
+
+
+											</tr>
+
+										</thead>
+
+										<tbody>
+											<tr th:each="postObj : ${positionList}">
+
+												<td th:text="${postObj.postName}"></td>
+
+
+												<td th:text="${postObj.deptName}"></td>
+
+												<td>
+													<li><a
+														th:href="@{/dept/addNewPost/{id}(id=${postObj.deptId})}">Add
+															 Position</a></li>
+												</td>
+
+												<!-- <td><input type="button" id="myButton"
+													th:value="*{postObj.isActive}" onclick="Buttontoggle();"></td> -->
+
+												<!-- <td>
+													<li><a
+														th:href="@{/dept/InactivatePost/{id}(id=${postObj.postId})}">Activate/Inactivate</a></li>
+												</td> -->
+
+											</tr>
+										</tbody>
+									</table>
+									</div>
+								</div>
+								<div></div>
+							</div>
+
+
+
+
+
+
+
+
+
+							<!-- 			</div> -->
+							<!-- Row / End -->
+
+							<!-- Footer -->
+							<div class="dashboard-footer-spacer"></div>
+							<div class="small-footer margin-top-15">
+								<div class="small-footer-copyrights">
+									© 2022 <strong>360Resourcing</strong>. All Rights Reserved.
+								</div>
+								<a href="#" title="Twitter" data-tippy-placement="top">
+
+									<div class="clearfix"></div>
+							</div>
+							<!-- Footer / End -->
+
+						</div>
+					</div>
+<!-- Wrapper / End -->
+
+
+<!-- Apply for a job popup
+================================================== -->
+<!-- <div id="small-dialog" class="zoom-anim-dialog mfp-hide dialog-with-tabs"> -->
+
+<!-- 	<!--Tabs -->
+<!-- 	<div class="sign-in-form"> -->
+
+<!-- 		<ul class="popup-tabs-nav"> -->
+<!-- 			<li><a href="#tab">Add Note</a></li> -->
+<!-- 		</ul> -->
+
+<!-- 		<div class="popup-tabs-container"> -->
+
+<!-- 			<!-- Tab -->
+<!-- 			<div class="popup-tab-content" id="tab"> -->
+				
+<!-- 				Welcome Text -->
+<!-- 				<div class="welcome-text"> -->
+<!-- 					<h3>Do Not Forget 😎</h3> -->
+<!-- 				</div> -->
+					
+<!-- 				Form -->
+<!-- 				<form method="post" id="add-note"> -->
+
+<!-- 					<select class="selectpicker with-border default margin-bottom-20" data-size="7" title="Priority"> -->
+<!-- 						<option>Low Priority</option> -->
+<!-- 						<option>Medium Priority</option> -->
+<!-- 						<option>High Priority</option> -->
+<!-- 					</select> -->
+
+<!-- 					<textarea name="textarea" cols="10" placeholder="Note" class="with-border"></textarea> -->
+
+<!-- 				</form> -->
+				
+<!-- 				Button -->
+<!-- 				<button class="button full-width button-sliding-icon ripple-effect" type="submit" form="add-note">Add Note <i class="icon-material-outline-arrow-right-alt"></i></button> -->
+
+<!-- 			</div> -->
+
+<!-- 		</div> -->
+<!-- 	</div> -->
+<!-- </div> -->
+<!-- Apply for a job popup / End -->
+
+
+<!-- Scripts
+================================================== -->
+<script src="../../js/jquery-3.6.0.min.js"></script>
+<script src="../../js/jquery-migrate-3.3.2.min.js"></script>
+<script src="../../js/mmenu.min.js"></script>
+<script src="../../js/tippy.all.min.js"></script>
+<script src="../../js/simplebar.min.js"></script>
+<script src="../../js/bootstrap-slider.min.js"></script>
+<script src="../../js/bootstrap-select.min.js"></script>
+<script src="../../js/snackbar.js"></script>
+<script src="../../js/clipboard.min.js"></script>
+<script src="../../js/counterup.min.js"></script>
+<script src="../../js/magnific-popup.min.js"></script>
+<script src="../../js/slick.min.js"></script>
+<script src="../../js/custom.js"></script>
+
+<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+<script>
+// Snackbar for user status switcher
+$('#snackbar-user-status label').click(function() { 
+	Snackbar.show({
+		text: 'Your status has been changed!',
+		pos: 'bottom-center',
+		showAction: false,
+		actionText: "Dismiss",
+		duration: 3000,
+		textColor: '#fff',
+		backgroundColor: '#383838'
+	}); 
+}); 
+</script>
+
+<!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
+<script src="js/chart.min.js"></script>
+<script>
+	Chart.defaults.global.defaultFontFamily = "Nunito";
+	Chart.defaults.global.defaultFontColor = '#888';
+	Chart.defaults.global.defaultFontSize = '14';
+
+	var ctx = document.getElementById('chart').getContext('2d');
+
+	var chart = new Chart(ctx, {
+		type: 'line',
+
+		// The data for our dataset
+		data: {
+			labels: ["January", "February", "March", "April", "May", "June"],
+			// Information about the dataset
+	   		datasets: [{
+				label: "Views",
+				backgroundColor: 'rgba(42,65,232,0.08)',
+				borderColor: '#2a41e8',
+				borderWidth: "3",
+				data: [196,132,215,362,210,252],
+				pointRadius: 5,
+				pointHoverRadius:5,
+				pointHitRadius: 10,
+				pointBackgroundColor: "#fff",
+				pointHoverBackgroundColor: "#fff",
+				pointBorderWidth: "2",
+			}]
+		},
+
+		// Configuration options
+		options: {
+
+		    layout: {
+		      padding: 10,
+		  	},
+
+			legend: { display: false },
+			title:  { display: false },
+
+			scales: {
+				yAxes: [{
+					scaleLabel: {
+						display: false
+					},
+					gridLines: {
+						 borderDash: [6, 10],
+						 color: "#d8d8d8",
+						 lineWidth: 1,
+	            	},
+				}],
+				xAxes: [{
+					scaleLabel: { display: false },  
+					gridLines:  { display: false },
+				}],
+			},
+
+		    tooltips: {
+		      backgroundColor: '#333',
+		      titleFontSize: 13,
+		      titleFontColor: '#fff',
+		      bodyFontColor: '#fff',
+		      bodyFontSize: 13,
+		      displayColors: false,
+		      xPadding: 10,
+		      yPadding: 10,
+		      intersect: false
+		    }
+		},
+
+
+});
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready( function () {
+var table = $('#example').DataTable({"sAjaxDataProp": "" })
+});</script>
+
+</body>
+</html>

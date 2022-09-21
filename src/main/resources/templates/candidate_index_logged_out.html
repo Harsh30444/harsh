@@ -1,0 +1,304 @@
+<!-- ============================= -->
+
+<!-- 	@author: Praveen Gudimalla -->
+
+<!--  ==============================--> 
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../../../css/style.css">
+<link rel="stylesheet" href="../../../css/colors/blue.css">
+
+</head>
+<body>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header Container
+================================================== -->
+<header id="header-container" class="fullwidth not-sticky">
+
+	<!-- Header -->
+	<div id="header">
+		<div class="container">
+			
+			<!-- Left Side Content -->
+			<div class="left-side">
+				
+				<!-- Logo -->
+				<div id="logo">
+					<a href="#"><img src="../../../images/360Logo.jpg"
+								alt=""></a>
+				</div>
+
+				<!-- Main Navigation -->
+				<nav id="navigation">
+							<ul id="responsive">
+
+								<li><a href="#">Find Work</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/resourcing}">Browse Jobs</a></li>
+									</ul></li>
+									
+								<li><a href="#">Education</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/education/educationList/{candidateId}(candidateId=${session.candidateObj.candidateId})}">Education List</a></li>
+									</ul></li>
+									
+								<li><a href="#">Employment</a>
+									<ul class="dropdown-nav">
+										<li><a th:href="@{/employment/employmentList/{candidateId}(candidateId=${session.candidateObj.candidateId})}">Employment List</a></li>
+									</ul></li>
+									
+								<li><a href="#">Skills</a>
+									<ul class="dropdown-nav"><li><a
+											th:href="@{/csa/skillList/{candidateId}(candidateId=${session.candidateObj.candidateId})}">Skills List</a></li>
+											<li><a
+											th:href="@{/csa/addSkills/{id}(id=${session.candidateObj.candidateId})}">add Skills</a></li>
+									</ul></li>
+											
+
+								
+						
+						<li><a href="#">Next</a>
+							<ul class="dropdown-nav">
+								<li><a th:href="@{/candidate/dashboardSettings/{id}(id=${session.candidateObj.candidateId})}">DashboardSettings</a>
+								</li>
+							</ul>
+						</li>
+						
+						<li><a href="#">Back</a>
+							<ul class="dropdown-nav">
+								<li><a th:href="@{/candidate/dashboard/{id}(id=${session.candidateObj.candidateId})}">Dashboard</a></li>
+							</ul>
+						</li>
+
+						</nav>
+				<div class="clearfix"></div>
+				<!-- Main Navigation / End -->
+				
+			</div>
+			<!-- Left Side Content / End -->
+
+
+			<!-- Right Side Content / End -->
+			<div class="right-side">
+
+				<!--  User Notifications -->
+				
+				<!--  User Notifications / End -->
+
+				<!-- User Menu -->
+				<div class="header-widget">
+
+					<!-- Messages -->
+					<div class="header-notifications user-menu">
+								<div class="header-notifications-trigger">
+									<a href="#"><div class="user-avatar status-online">
+											<img src="../../../images/user-avatar-small-01.jpg" alt="">
+										</div></a>
+								</div>
+
+								<!-- Dropdown -->
+								<div class="header-notifications-dropdown">
+
+									<!-- User Status -->
+									<div class="user-status">
+
+										<!-- User Name / Avatar -->
+										<div class="user-details">
+											<div class="user-avatar status-online">
+												<img src="../../../images/user-avatar-small-01.jpg" alt="">
+											</div>
+											<div class="user-name">
+												<h3 style="color: maroon" th:text="${session.candidateObj.firstName}"></h3>
+												<span>Candidate</span>
+											</div>
+										</div>
+
+										
+									</div>
+
+									<ul class="user-menu-small-nav">
+
+										<li><a
+											th:href="@{/candidate/dashboard/{id}(id=${session.candidateObj.candidateId})}"><i
+												class="icon-material-outline-settings"></i>Dashboard</a></li>
+
+										<li><a th:href="@{/candidate/logout}"><i
+												class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+				<!-- User Menu / End -->
+
+				<!-- Mobile Navigation Button -->
+				<span class="mmenu-trigger">
+					<button class="hamburger hamburger--collapse" type="button">
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
+					</button>
+				</span>
+
+			</div>
+			<!-- Right Side Content / End -->
+
+		</div>
+	</div>
+	<!-- Header / End -->
+
+</header>
+<div class="clearfix"></div>
+		<!-- Header Container / End -->
+
+
+
+		<!-- Intro Banner
+================================================== -->
+		<!-- add class "disable-gradient" to enable consistent background overlay -->
+		<div class="intro-banner"
+			data-background-image="images/home-background.jpg">
+			<div class="container">
+
+				<!-- Intro Headline -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="banner-headline">
+							<h3>
+								<strong>Hire experts or be hired for any job, any time.</strong>
+								<br> <span>Thousands of small businesses use <strong
+									class="color">360Resourcing</strong> to turn their ideas into reality.
+								</span>
+							</h3>
+						</div>
+					</div>
+				</div>
+
+				<!-- Search Bar -->
+				<div class="row">
+					<div class="col-md-12">
+						<form method="post" id="search-form"
+							th:action="@{/job/jdListForUnknown}" th:object="${objJd}">
+							<div class="intro-banner-search-form margin-top-95">
+
+								<!-- Search Field of Location -->
+								<div class="intro-search-field with-autocomplete">
+									<label for="autocomplete-input"
+										class="field-title ripple-effect"></label>
+									<div class="input-with-icon">
+										<input id="autocomplete-input" type="text" name="skills"
+											th:field="*{skills}" placeholder="Skills"> <i
+											class="icon-material-outline-location-on"></i>
+									</div>
+								</div>
+
+								<!-- Search Field of Position-->
+								<div class="intro-search-field">
+									<label for="intro-keywords" class="field-title ripple-effect">Experience in Yrs</label>
+									<input id="intro-keywords" type="text"
+										name="exp" th:field="*{exp}"
+										placeholder="Job Title or Keywords">
+								</div>
+
+								<!-- Button -->
+								<div class="intro-search-button">
+								
+									<button class="button ripple-effect" type="submit">Search</button>
+
+
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+
+				
+
+			</div>
+		</div>
+
+
+		<!-- Content
+================================================== -->
+		<!-- Category Boxes -->
+		
+	<!-- Sign In Popup / End -->
+
+
+	<!-- Scripts
+================================================== -->
+	<script src="js/jquery-3.6.0.min.js"></script>
+	<script src="js/jquery-migrate-3.3.2.min.js"></script>
+	<script src="js/mmenu.min.js"></script>
+	<script src="js/tippy.all.min.js"></script>
+	<script src="js/simplebar.min.js"></script>
+	<script src="js/bootstrap-slider.min.js"></script>
+	<script src="js/bootstrap-select.min.js"></script>
+	<script src="js/snackbar.js"></script>
+	<script src="js/clipboard.min.js"></script>
+	<script src="js/counterup.min.js"></script>
+	<script src="js/magnific-popup.min.js"></script>
+	<script src="js/slick.min.js"></script>
+	<script src="js/custom.js"></script>
+
+	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+	<script>
+// Snackbar for user status switcher
+$('#snackbar-user-status label').click(function() { 
+	Snackbar.show({
+		text: 'Your status has been changed!',
+		pos: 'bottom-center',
+		showAction: false,
+		actionText: "Dismiss",
+		duration: 3000,
+		textColor: '#fff',
+		backgroundColor: '#383838'
+	}); 
+}); 
+</script>
+
+
+	<!-- Google Autocomplete -->
+	<script>
+	function initAutocomplete() {
+		 var options = {
+		  types: ['(cities)'],
+		  // componentRestrictions: {country: "us"}
+		 };
+
+		 var input = document.getElementById('autocomplete-input');
+		 var autocomplete = new google.maps.places.Autocomplete(input, options);
+	}
+
+	// Autocomplete adjustment for homepage
+	if ($('.intro-banner-search-form')[0]) {
+	    setTimeout(function(){ 
+	        $(".pac-container").prependTo(".intro-search-field.with-autocomplete");
+	    }, 300);
+	}
+
+</script>
+
+	<!-- Google API & Maps -->
+	<!-- Geting an API Key: https://developers.google.com/maps/documentation/javascript/get-api-key -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
+
+</body>
+</html>

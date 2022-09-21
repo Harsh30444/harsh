@@ -1,0 +1,267 @@
+<!-- /*  -->
+<!--  * Author : Srivani Tudi*/ -->
+
+
+<!doctype html>
+<html lang="en" xmlns:th="https://thymleaf.org">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/colors/blue.css">
+
+</head>
+<body>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+	<!-- Header Container
+================================================== -->
+		<header id="header-container" class="fullwidth">
+
+			<!-- Header -->
+			<div id="header">
+				<div class="container">
+
+					<!-- Left Side Content -->
+					<div class="left-side">
+
+						<!-- Logo -->
+						<div id="logo">
+							<a href="#"><img src="/../../images/logo360.jpg" alt=""></a>
+						</div>
+
+						<!-- Main Navigation -->
+						<nav id="navigation"></nav>
+						<!-- Main Navigation / End -->
+
+					</div>
+					<!-- Left Side Content / End -->
+
+
+					<!-- Right Side Content / End -->
+					<div class="right-side">
+
+						<!--  User Notifications -->
+						<div class="header-widget hide-on-mobile">
+
+							<!-- Notifications -->
+							<div class="header-notifications">
+
+								<!-- Trigger -->
+								<!-- Dropdown -->
+								<div class="header-notifications-dropdown"></div>
+
+							</div>
+
+							<!-- Messages -->
+
+						</div>
+						<!--  User Notifications / End -->
+
+						<!-- User Menu -->
+						<div class="header-widget">
+
+							<!-- Messages -->
+
+
+						</div>
+						<!-- User Menu / End -->
+
+						<!-- Mobile Navigation Button -->
+
+					</div>
+					<!-- Right Side Content / End -->
+
+				</div>
+			</div>
+			<!-- Header / End -->
+
+		</header>
+		<div class="clearfix"></div>
+		<!-- Header Container / End -->
+
+		<!-- Titlebar
+================================================== -->
+		<div id="titlebar" class="gradient">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12"></div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Page Content
+================================================== -->
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-5 offset-xl-3">
+
+					<div class="login-register-page">
+						<!-- Welcome Text -->
+						<div class="welcome-text">
+							<h3 style="font-size: 26px;">Let's create your account As
+								Employee!</h3>
+						</div>
+
+
+						<!-- Form -->
+						<form method="post" id="login-form" th:action="@{/emp/saveUser}"
+							th:object="${newUserDetails}">
+							<div class="input-with-icon-left">
+								<i class="icon-material-baseline-mail-outline"></i> <input
+									type="text" class="input-text with-border"
+									name="emailaddress-register" th:field="*{emailId}"
+									id="emailaddress-register" placeholder="Email Address"
+									pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+									title="form with an email field that that must be in the following order:
+							characters@characters.domain (characters followed by an @ sign, followed by more characters,
+							and then (dot) like . After the (dot) like. sign, add at least 2 letters from a to z:"
+									required />
+							</div>
+
+							<div class="input-with-icon-left"
+								title="Should be at least 8 characters long"
+								data-tippy-placement="bottom">
+								<i class="icon-material-outline-lock"></i> <input
+									type="password" class="input-text with-border"
+									name="password-register" th:field="*{password}"
+									id="password-register" placeholder="Password"
+									pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+									title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+									required="required" th:minlength="1" th:maxlength="100">
+							</div>
+
+
+						</form>
+
+						<!-- Button -->
+						<button
+							class="button full-width button-sliding-icon ripple-effect margin-top-10"
+							type="submit" form="login-form">
+							Register <i class="icon-material-outline-arrow-right-alt"></i>
+						</button>
+
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Spacer -->
+		<div class="margin-top-70"></div>
+		<!-- Spacer / End-->
+
+		<!-- Footer
+================================================== -->
+		<div id="footer">
+
+		<!-- Footer Top Section -->
+		<div class="footer-top-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-12">
+
+						<!-- Footer Rows Container -->
+						<div class="footer-rows-container">
+
+							<!-- Left Side -->
+							<div class="footer-rows-left">
+								<div class="footer-row">
+									<div class="footer-row-inner footer-logo">
+										<img src="/images/360Logo.jpg" alt="">
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- Footer Copyrights -->
+			<div class="footer-bottom-section">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12">
+						<strong>360Resourcing</strong>. All Rights Reserved.
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Footer Copyrights / End -->
+
+		</div>
+		<!-- Footer / End -->
+
+	</div>
+		<!-- Footer / End -->
+
+
+	</div>
+	<!-- Wrapper / End -->
+
+	<!-- Scripts
+================================================== -->
+	<script th:href="@{/js/jquery-3.6.0.min.js}"></script>
+	<script th:href="@{/js/jquery-migrate-3.3.2.min.js}"></script>
+	<script th:href="@{/js/mmenu.min.js}"></script>
+	<script th:href="@{/validation.js}"></script>
+	<script th:href="@{/js/simplebar.min.js}"></script>
+	<script th:href="@{/js/bootstrap-slider.min.js}"></script>
+	<script th:href="@{/js/bootstrap-select.min.js}"></script>
+	<script th:href="@{/js/snackbar.js}"></script>
+	<script th:href="@{/js/captcha.js}"></script>
+	<script th:href="@{/js/counterup.min.js}"></script>
+	<script th:href="@{/js/magnific-popup.min.js}"></script>
+	<script th:href="@{/js/slick.min.js}"></script>
+	<script th:href="@{/js/custom.js}"></script>
+	<script src="/../../js/show_password.js"></script>
+		<script src="/../../js/strong_password.js"></script>
+	
+	
+
+
+
+	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+	<script
+		src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js'></script>
+	<script src="./script.js"></script>
+
+
+	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+	<script>
+// Snackbar for user status switcher
+$('#snackbar-user-status label').click(function() { 
+	Snackbar.show({
+		text: 'Your status has been changed!',
+		pos: 'bottom-center',
+		showAction: false,
+		actionText: "Dismiss",
+		duration: 3000,
+		textColor: '#fff',
+		backgroundColor: '#383838'
+	}); 
+}); 
+</script>
+
+
+
+
+
+
+</body>
+</html>

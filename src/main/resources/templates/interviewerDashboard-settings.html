@@ -1,0 +1,605 @@
+<!-- *author: HarshKashyap -->
+
+<!doctype html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>360 Resourcing</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/colors/blue.css">
+
+</head>
+<body class="gray">
+<h1>jhgfd</h1>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+	<!-- Header Container
+================================================== -->
+		<header id="header-container"
+			class="fullwidth dashboard-header not-sticky">
+
+			<!-- Header -->
+			<div id="header">
+				<div class="container">
+
+					<!-- Left Side Content -->
+					<div class="left-side">
+
+						<!-- Logo -->
+						<div id="logo">
+							<a href="#"><img src="../../images/360Logo.jpg" alt=""></a>
+						</div>
+
+						<!-- Main Navigation -->
+
+						<nav id="navigation">
+							<ul id="responsive">
+
+								<li><a
+									th:href="@{/availabilityList/{interviewerId}(interviewerId=${session.interviewerId})}">InterviewerAvailabilityList</a></li>
+
+<!-- 								<li><a th:href="@{/List}">AvailabilityList</a></li> -->
+
+
+								<li><a
+									th:href="@{/skills/{id}(id=${session.interviewerId})}">
+										SkillsList</a></li>
+<!-- 								<li><a th:href="@{/interList}">InterviewerList</a></li> -->
+
+								<li><a
+									th:href="@{/feedbackList/{id}(id=${session.interviewerId})}">Give
+										Feedback</a></li>
+
+								<li><a
+									th:href="@{/finalFeedbackList/{id}(id=${session.interviewerId})}">FeedbackList</a></li>
+
+
+							</ul>
+						</nav>
+
+
+
+						<div class="clearfix"></div>
+						<!-- Main Navigation / End -->
+
+					</div>
+					<!-- Left Side Content / End -->
+
+
+					<!-- Right Side Content / End -->
+					<div class="right-side">
+
+						<!--  User Notifications -->
+						<!--  User Notifications / End -->
+
+						<!-- User Menu -->
+						<div class="header-widget">
+
+							<!-- Messages -->
+							<div class="header-notifications user-menu">
+								<div class="header-notifications-trigger">
+									<a href="#"><div class="user-avatar status-online">
+											<img src="../../images/user-avatar-small-01.jpg" alt="">
+										</div></a>
+								</div>
+
+								<!-- Dropdown -->
+								<div class="header-notifications-dropdown">
+
+									<!-- User Status -->
+									<div class="user-status">
+
+
+										<!-- User Name / Avatar -->
+										<div class="user-details">
+											<div class="user-avatar status-online">
+												<img src="images/user-avatar-small-01.jpg" alt="">
+											</div>
+											<div class="user-name">
+												<p style="color: maroon" th:text="${session.name}"></p>
+												<span>Interviewer</span>
+											</div>
+										</div>
+
+
+									</div>
+
+									<ul class="user-menu-small-nav">
+										<ul data-submenu-title="Start">
+									<li><a
+										th:href="@{/dashboard.html/{id}(id=${session.interviewerId})}"><i
+											class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+
+								</ul>
+
+
+
+								<ul data-submenu-title="Account">
+
+									<li><a th:href="@{/index-logged-out.html}"><i
+											class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+								</ul>
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+						<!-- User Menu / End -->
+
+						<!-- Mobile Navigation Button -->
+						<span class="mmenu-trigger">
+							<button class="hamburger hamburger--collapse" type="button">
+								<span class="hamburger-box"> <span
+									class="hamburger-inner"></span>
+								</span>
+							</button>
+						</span>
+
+					</div>
+					<!-- Right Side Content / End -->
+
+				</div>
+			</div>
+			<!-- Header / End -->
+
+		</header>
+		<div class="clearfix"></div>
+		<!-- Header Container / End -->
+
+
+		<!-- Dashboard Container -->
+		<div class="dashboard-container">
+
+			<!-- Dashboard Sidebar
+	================================================== -->
+			<div class="dashboard-sidebar">
+				<div class="dashboard-sidebar-inner" data-simplebar>
+					<div class="dashboard-nav-container">
+
+						<!-- Responsive Navigation Trigger -->
+						<a href="#" class="dashboard-responsive-nav-trigger"> <span
+							class="hamburger hamburger--collapse"> <span
+								class="hamburger-box"> <span class="hamburger-inner"></span>
+							</span>
+						</span> <span class="trigger-title">Dashboard Navigation</span>
+						</a>
+
+						<!-- Navigation -->
+						<div class="dashboard-nav">
+							<div class="dashboard-nav-inner">
+
+								<ul data-submenu-title="Start">
+									<li><a
+										th:href="@{/dashboard.html/{id}(id=${session.interviewerId})}"><i
+											class="icon-material-outline-dashboard"></i> Dashboard</a></li>
+								</ul>
+
+								<ul data-submenu-title="Account">
+
+									<li><a th:href="@{/index-logged-out.html}"><i
+											class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+								</ul>
+
+
+							</div>
+						</div>
+						<!-- Navigation / End -->
+
+					</div>
+				</div>
+			</div>
+			<!-- Dashboard Sidebar / End -->
+
+
+			<!-- Dashboard Content
+	================================================== -->
+			<form class="dashboard-content-container" data-simplebar
+				th:each="interviewerObj:${interviewerProfile}" 
+				th:action="@{/save}" method="post" > <!--enctype="multipart/form-data"-->
+
+				<!--  	<div class="dashboard-content-inner">-->
+				<div class="dashboard-content-inner" data-simplebar>
+
+					<!-- Dashboard Headline -->
+					<div class="dashboard-headline">
+						<h3>Update Your Profile</h3>
+
+						<!-- Breadcrumbs -->
+<!-- 					<nav id="breadcrumbs" class="dark"> -->
+<!-- 							<ul> -->
+<!-- 									<li><a href="#">Home</a></li> -->
+<!-- 								<li><a href="#">Dashboard</a></li> -->
+<!-- 								<li>Settings</li> -->
+<!-- 							</ul> -->
+<!-- 						</nav> -->
+					</div>
+
+
+					<!-- Row -->
+					<div class="row">
+
+						<!-- Dashboard Box -->
+						<div class="col-xl-12">
+							<div class="dashboard-box margin-top-0">
+
+								<!-- Headline -->
+								<div class="headline">
+									<h3>
+										<i class="icon-material-outline-account-circle"></i> My
+										Account
+									</h3>
+									<p th:text="${session.name}"></p>
+								</div>
+
+								<div class="content with-padding padding-bottom-0">
+
+									<div class="row">
+<!-- 										<div class="col-auto"> -->
+<!-- 											<div class="avatar-wrapper" data-tippy-placement="bottom" -->
+<!-- 												title="Change Image"> -->
+<!-- 												<div> -->
+<!-- 													<th scope="row">upload image<img alt="" th:src="*{'data:profPic/jpeg;base64,'+{interviewerObj.profPic}}" style="width: 100px;height: 100px;"></th> -->
+<!-- 												</div> -->
+
+<!-- 												<div class="upload-button"></div> -->
+<!-- 												<input class="file-upload" type="file" -->
+<!-- 													accept="image/png,image/jpg,image/jpeg" id="image" -->
+<!-- 													name="file" /> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+
+									
+
+										<div class="col">
+											<div class="row">
+
+
+												<input type="hidden" id="interviewerid" name="interviewerId"
+													th:value="${interviewerObj.interviewerId}" />
+
+
+
+
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>Name</h5>
+														<input type="text" name="interviewerName"
+															th:value="${interviewerObj.interviewerName}"
+															class="with-border" placeholder="Name"
+															pattern="[a-zA-Z][a-zA-Z\s]*"
+															title="it should be in A-Za-z format">
+													</div>
+												</div>
+
+
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>Designation</h5>
+														<input type="text" name="Designation"
+															th:value="${interviewerObj.Designation}"
+															class="with-border" placeholder="Designation"
+															pattern="[a-zA-Z,][a-zA-Z,\s]*"
+															title="it should be in A-Za-z format" required/>
+													</div>
+												</div>
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>Technology</h5>
+														<input type="text" name="Technology"
+															th:value="${interviewerObj.Technology}"
+															class="with-border" placeholder="Technology"
+															pattern="[a-zA-Z,][a-zA-Z,\s]*"
+															title="it should be in A-Za-z format"required/>
+													</div>
+												</div>
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>interviewerMobileNo</h5>
+														<input type="tel" name="interviewerMobileNo"
+															th:value="${interviewerObj.interviewerMobileNo}"
+															class="with-border" placeholder="mobileNo"
+															pattern="[6|7|8|9]{1}\d{9}"
+															title="it should be in 0-9 format" th:minlength=10
+															th:maxlength=10>
+													</div>
+												</div>
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>experienceInYears</h5>
+														<input type="text" name="experienceInYears"
+															th:value="${interviewerObj.experienceInYears}"
+															class="with-border" placeholder="experience"
+															pattern="[0-9a-zA-Z][0-9a-zA-Z\s]*"
+															title="it should be in A-Za-z format"required/>
+													</div>
+												</div>
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>previousCompany</h5>
+														<input type="text" name="previousCompany"
+															th:value="${interviewerObj.previousCompany}"
+															class="with-border" placeholder="previousCompany"
+															pattern="[a-zA-Z,][a-zA-Z,\s]*"
+															title="it should be in A-Za-z format"required/>
+													</div>
+												</div>
+
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>certifications</h5>
+														<input type="text" name="certifications"
+															th:value="${interviewerObj.certifications}"
+															class="with-border" placeholder="certifications"
+															pattern="[a-zA-Z,][a-zA-Z,\s]*"
+															title="it should be in A-Za-z format"required/>
+													</div>
+												</div>
+											</div>
+								
+
+											<div class="col-xl-6">
+												<div class="submit-field">
+													<h5>Email</h5>
+													<input type="email" name="interviewerMail"
+														th:value="${interviewerObj.interviewerMail}"
+														class="with-border" placeholder="Email" readonly="readonly">
+												</div>
+											</div>
+
+
+
+
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+
+
+					<!-- Dashboard Box -->
+					<div class="col-xl-12">
+						<div id="test1" class="dashboard-box">
+
+							<!-- Headline -->
+							<div class="headline">
+								<h3>
+									<i class="icon-material-outline-lock"></i> Password & Security
+								</h3>
+							</div>
+
+							<div class="content with-padding">
+								<div class="row">
+									<div class="col-xl-4">
+										<div class="submit-field">
+											<h5>Password</h5>
+											<input type="password" name="Password"
+												th:value="${interviewerObj.Password}" class="with-border"
+												placeholder="password" readonly/>
+										</div>
+									</div>
+
+									<div class="col-xl-4">
+										<div class="submit-field">
+											<!-- 						<h5>New Password</h5>
+										<input type="password" class="with-border">
+									</div>
+								</div>
+
+								<div class="col-xl-4">
+									<div class="submit-field">
+										<h5>Repeat New Password</h5>
+										<input type="password" class="with-border">
+									</div>
+								</div>  -->
+
+<!-- 											<div class="col-xl-12"> -->
+<!-- 												<div class="checkbox"> -->
+<!-- 													<input type="checkbox" id="two-step" checked> <label -->
+<!-- 														for="two-step"><span class="checkbox-icon"></span> -->
+<!-- 														Enable Two-Step Verification via Email</label> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Button -->
+							<div class="col-xl-12">
+								<button type="submit"
+									class="button ripple-effect big margin-top-30" th:text="save">Save
+									Changes</button>
+							</div>
+
+						</div>
+					</div>
+			</form>
+			
+			
+			<!-- Row / End -->
+
+			<!-- Footer -->
+			<div class="dashboard-footer-spacer"></div>
+			<div class="small-footer margin-top-15">
+				<div class="small-footer-copyrights">
+					© 2022 <strong>360 Resourcing</strong>
+				</div>
+<!-- 				<ul class="footer-social-links"> -->
+<!-- 					<li><a href="#" title="Facebook" data-tippy-placement="top"> -->
+<!-- 							<i class="icon-brand-facebook-f"></i> -->
+<!-- 					</a></li> -->
+<!-- 					<li><a href="#" title="Twitter" data-tippy-placement="top"> -->
+<!-- 							<i class="icon-brand-twitter"></i> -->
+<!-- 					</a></li> -->
+<!-- 					<li><a href="#" title="Google Plus" data-tippy-placement="top"> -->
+<!-- 							<i class="icon-brand-google-plus-g"></i> -->
+<!-- 					</a></li> -->
+<!-- 					<li><a href="#" title="LinkedIn" data-tippy-placement="top"> -->
+<!-- 							<i class="icon-brand-linkedin-in"></i> -->
+<!-- 					</a></li> -->
+<!-- 				</ul> -->
+<!-- 				<div class="clearfix"></div> -->
+<!-- 			</div> -->
+			<!-- Footer / End -->
+
+		</div>
+	</div>
+	<!-- Dashboard Content / End -->
+
+	</div>
+	<!-- Dashboard Container / End -->
+
+	</div>
+	<!-- Wrapper / End -->
+
+
+	<!-- Scripts
+================================================== -->
+	<script src="../js/jquery-3.6.0.min.js"></script>
+	<script src="../js/jquery-migrate-3.3.2.min.js"></script>
+	<script src="../js/mmenu.min.js"></script>
+	<script src="../js/tippy.all.min.js"></script>
+	<script src="../js/simplebar.min.js"></script>
+	<script src="../js/bootstrap-slider.min.js"></script>
+	<script src="../js/bootstrap-select.min.js"></script>
+	<script src="../js/snackbar.js"></script>
+	<script src="../js/clipboard.min.js"></script>
+	<script src="../js/counterup.min.js"></script>
+	<script src="../js/magnific-popup.min.js"></script>
+	<script src="../js/slick.min.js"></script>
+	<script src="../js/custom.js"></script>
+
+	<!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+	<script>
+// Snackbar for user status switcher
+$('#snackbar-user-status label').click(function() { 
+	Snackbar.show({
+		text: 'Your status has been changed!',
+		pos: 'bottom-center',
+		showAction: false,
+		actionText: "Dismiss",
+		duration: 3000,
+		textColor: '#fff',
+		backgroundColor: '#383838'
+	}); 
+}); 
+</script>
+
+	<!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
+	<script src="js/chart.min.js"></script>
+	<script>
+	Chart.defaults.global.defaultFontFamily = "Nunito";
+	Chart.defaults.global.defaultFontColor = '#888';
+	Chart.defaults.global.defaultFontSize = '14';
+
+	var ctx = document.getElementById('chart').getContext('2d');
+
+	var chart = new Chart(ctx, {
+		type: 'line',
+
+		// The data for our dataset
+		data: {
+			labels: ["January", "February", "March", "April", "May", "June"],
+			// Information about the dataset
+	   		datasets: [{
+				label: "Views",
+				backgroundColor: 'rgba(42,65,232,0.08)',
+				borderColor: '#2a41e8',
+				borderWidth: "3",
+				data: [196,132,215,362,210,252],
+				pointRadius: 5,
+				pointHoverRadius:5,
+				pointHitRadius: 10,
+				pointBackgroundColor: "#fff",
+				pointHoverBackgroundColor: "#fff",
+				pointBorderWidth: "2",
+			}]
+		},
+
+		// Configuration options
+		options: {
+
+		    layout: {
+		      padding: 10,
+		  	},
+
+			legend: { display: false },
+			title:  { display: false },
+
+			scales: {
+				yAxes: [{
+					scaleLabel: {
+						display: false
+					},
+					gridLines: {
+						 borderDash: [6, 10],
+						 color: "#d8d8d8",
+						 lineWidth: 1,
+	            	},
+				}],
+				xAxes: [{
+					scaleLabel: { display: false },  
+					gridLines:  { display: false },
+				}],
+			},
+
+		    tooltips: {
+		      backgroundColor: '#333',
+		      titleFontSize: 13,
+		      titleFontColor: '#fff',
+		      bodyFontColor: '#fff',
+		      bodyFontSize: 13,
+		      displayColors: false,
+		      xPadding: 10,
+		      yPadding: 10,
+		      intersect: false
+		    }
+		},
+
+
+});
+
+</script>
+
+
+	<!-- Google Autocomplete -->
+	<script>
+	function initAutocomplete() {
+		 var options = {
+		  types: ['(cities)'],
+		  // componentRestrictions: {country: "us"}
+		 };
+
+		 var input = document.getElementById('autocomplete-input');
+		 var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+		if ($('.submit-field')[0]) {
+		    setTimeout(function(){ 
+		        $(".pac-container").prependTo("#autocomplete-container");
+		    }, 300);
+		}
+	}
+</script>
+
+	<!-- Google API -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=initAutocomplete"></script>
+
+
+</body>
+</html> 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>360Resourcing</title>
+</head>
+<body>
+    <h2>
+       Your Session Has Expired!!
+    </h2>
+    <h2>
+        <span th:text="${homepage}"></span> <a href="/resourcing"><i
+            class="icon-material-outline-power-settings-new"></i> Home page</a>
+    </h2>
+   
+   
+   <!--  <h2>
+        <span th:text="${candidateDashboard}"></span> <a
+            th:href="@{/candidate/dashboard/{id}(id=${session.candidateObj.candidateId})}"><i
+            class="icon-material-outline-settings"></i>Candidate DashBoard</a>
+    </h2>
+    <h2>
+        <span th:text="${interviewerDashboard}"> <a
+            th:href="@{/dashboard.html/{id}(id=${session.interviewerId})}"><i
+                class="icon-material-outline-dashboard"></i>Interviewer DashBoard</a></span>
+    </h2>
+    <h2>
+        <span th:text="${userDashboard}"></span> <a
+            th:href="@{/user/userDashboard}"><i
+            class="icon-material-outline-dashboard"></i> User DashBoard</a>
+    </h2>
+    <h2>
+        <span th:text="${employeeDashboard}"></span> <a
+            th:href="@{/emp/employeeDashboard}"><i
+            class="icon-material-outline-dashboard"></i>EmployeeDashBoard</a>
+    </h2>
+
+
+
+   <h2>
+        <span th:text="${adminDashboard}"></span> <a
+            th:href="@{/admin/dashboard/{id}(id=${session.adminId})}"><i
+            class="icon-material-outline-dashboard"></i>Admin DashBoard</a>
+    </h2>
+ -->
+
+
+</body>
+</html>
