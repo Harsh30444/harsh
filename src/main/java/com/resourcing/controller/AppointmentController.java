@@ -61,10 +61,10 @@ public class AppointmentController {
 				list.add(app);
 			}
 		}
-		HttpSession session = request.getSession();
-		model.addAttribute("appointmentlist", list);
-		model.addAttribute("doctorid", interviewerId);
-		model.addAttribute("meetingLink", "");
+		//HttpSession session = request.getSession();
+		//model.addAttribute("appointmentlist", list);
+		//model.addAttribute("doctorid", interviewerId);
+		//model.addAttribute("meetingLink", "");
 		return "pappointmentlist";
 	}
 
