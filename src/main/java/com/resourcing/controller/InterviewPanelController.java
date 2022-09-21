@@ -226,7 +226,6 @@ public class InterviewPanelController {
 
 		List<Schedule> rejCand = allCandidates.stream().filter(rej -> rej.getFeedback()!= null && rej.getFeedback().equalsIgnoreCase("rejected")).toList();
 		model.addAttribute("rejCand", rejCand);
-	//	model.addAttribute("allCandidates", allCandidates);
 		model.addAttribute("selCandidates", selCandidates);
 
 		System.out.println("cvjkkjhgfdfgh");
@@ -253,7 +252,6 @@ public class InterviewPanelController {
 	public String pendingCandidates(Model model,@PathVariable int id) {
 		System.out.println(" pending/{id} ::invoked");
 		InterviewPanel interviewer=interviewerService.getInterviewerById(id);
-		//List<Schedule> schedule=scheduleService.FeedbackList(interviewer);
 		System.out.println("get the inter id:" + id);
 		List<Schedule> allCandidates = scheduleService.FeedbackList((InterviewPanel) interviewer);
 		List<Schedule> pendingCandidate=allCandidates.stream().filter(list -> list.getFeedback().equalsIgnoreCase("pending")).toList();
@@ -518,87 +516,7 @@ public class InterviewPanelController {
 		return "interviewerDashboard";
 	}
 
-	@GetMapping("/viewInterviewer/{id}")
-	public String viewInterviewer(Model model, @PathVariable("id") int interviewerId, Date timeStart, Date timeEnd,
-			HttpServletRequest request) throws Exception {
-//		InterviewPanel doc = interviewerService.getInterviewerById(interviewerId);
-//		List<InterviewerAvailability> docAvailable = interService.availableInterviewer(interviewerId);
-		InterviewPanel doc = interviewerService.getInterviewerById(interviewerId);
-		LOGGER.debug("finding the interviewer_id value:::" + doc.getInterviewerId());
-		List<InterviewerAvailability> docAvailable = interService.getAllInterviewerAvailabilities(doc);
-		model.addAttribute("doc", docAvailable);
-		model.addAttribute("doc", doc);
-		// LOGGER.debug("StartTimings==========" +
-		// docAvailable.get(0).getStartTimings());
-		// Formatting the date from html format to java
-		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
-		DateFormat formatterDay = new SimpleDateFormat("EEE");// gets week days as MON,TUE....
-		// getting start and end timings from DoctorAvailability and setting to Date
-		LOGGER.debug("formatter.parse(docAvailable.get(0).getStartTimings())===="
-				+ formatter.parse(docAvailable.get(0).getFromDate()));
-		timeStart = (Date) formatter.parse(docAvailable.get(0).getFromDate());
-		timeEnd = (Date) formatter.parse(docAvailable.get(0).getToDate());
-
-		// Separating Start and End Dates to year,month,date
-		LocalDate sd = LocalDate.of(timeStart.getYear() + 1900, timeStart.getMonth() + 1, timeStart.getDate());
-		LocalDate ed = LocalDate.of(timeEnd.getYear() + 1900, timeEnd.getMonth() + 1, timeEnd.getDate());
-		LOGGER.debug("sdf" + formatterDay.format(timeStart));
-		List<String> times = new ArrayList<>();// To store slots
-		Calendar calendar = Calendar.getInstance();// get present calendar
-		calendar.setTimeZone(TimeZone.getTimeZone("Asia/Calcutta"));
-
-		int minutes = calendar.get(Calendar.MINUTE);
-		// to Store dates
-		List<LocalDate> datesInRange = new ArrayList<>();
-		//
-
-		List<String> monthdate = new ArrayList<>();
-		/* HashMap<String, ArrayList<String>> map = new HashMap<>(); */
-		times = new ArrayList<>();
-		LOGGER.debug("============" + sd);
-
-		// stores only hour of endtime
-		int endHour = timeEnd.getHours();
-
-		// Present calender for getting todays data
-		Calendar calObj = Calendar.getInstance();
-		// Gets listOfAppointmnetByDoctorId&Date
-		List<InterviewerAvailability> app = interService.availabilityListByInterviewerId(interviewerId,
-				request.getParameter("date"));
-		LOGGER.debug("ssddddd" + app);
-		// For storing the booked slots as string
-		ArrayList<String> totalSlots = new ArrayList<>();
-		for (InterviewerAvailability a : app) {
-			totalSlots.add(a.getSlot());
-		}
-
-		ArrayList<String> timeList = new ArrayList<>();
-		// Dates drop-down according to DoctorAvailability
-		while (sd.isBefore(ed) || sd.equals(ed)) {
-			datesInRange.add(sd);
-
-			String day = sd.format(DateTimeFormatter.ofPattern("EEE"));
-			String month = sd.format(DateTimeFormatter.ofPattern("MMM"));
-			String s = Integer.toString(sd.getDayOfMonth());
-			if (sd.isAfter(LocalDate.now()) || sd.isEqual(LocalDate.now())) {
-				@SuppressWarnings("unused")
-				String slot = month.toString() + s;
-				monthdate.add(sd.toString());
-				sd = sd.plusDays(1);
-				LOGGER.debug("abcdefg");
-				model.addAttribute("date", monthdate);
-			} else {
-				sd = sd.plusDays(1);
-			}
-
-		}
-
-		model.addAttribute("times", timeList);
-		model.addAttribute("monthdate", monthdate);
-
-		return "employeesscreen";
-
-	}
+	
 
 	
 
